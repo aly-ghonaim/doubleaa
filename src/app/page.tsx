@@ -1,69 +1,144 @@
-import Image from "next/image";
+import { Nav } from "@/components/Nav";
+import { Reveal } from "@/components/Reveal";
+import { ProjectRow } from "@/components/ProjectRow";
+import { CopyEmail } from "@/components/CopyEmail";
+import { web, automation, studioQA, EMAIL, GITHUB } from "@/lib/content";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
+    <>
+      <Nav />
+      <main id="top">
+        {/* Hero */}
+        <section className="wrap hero">
+          <p className="eyebrow font-mono">A two-person studio</p>
+          <h1 className="hero-title font-display">
+            We build the <em>website</em> and the <em>machine</em> that runs
+            behind it.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="hero-lede">
+            Two people: one from the front end and security, one from
+            full-stack and AI automation. We ship clean, responsive sites and
+            the n8n workflows that quietly do the repetitive work — so the thing
+            you launch keeps running without you in the loop.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          <div className="who-row">
+            <div className="who">
+              <span className="who-name font-display">Aly Ghonaim</span>
+              <span className="who-role font-mono">
+                Front-end &amp; security · Red Team Diploma
+              </span>
+            </div>
+            <div className="who">
+              <span className="who-name font-display">Abdullah</span>
+              <span className="who-role font-mono">
+                Full-stack &amp; AI automation
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {/* Work */}
+        <section id="work" className="wrap section">
+          <h2 className="sec-label font-mono">Work</h2>
+
+          <h3 className="group-label font-mono">Web</h3>
+          <div className="proj-list">
+            {web.map((project, i) => (
+              <Reveal key={project.title}>
+                <ProjectRow project={project} index={i} />
+              </Reveal>
+            ))}
+          </div>
+
+          <h3 className="group-label font-mono">Automation</h3>
+          <div className="proj-list">
+            {automation.map((project, i) => (
+              <Reveal key={project.title}>
+                <ProjectRow project={project} index={i} />
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <div className="slot">
+              <b className="font-display">More automations in progress</b>
+              Additional n8n workflows are being repurposed for the studio and
+              will be added here as they land.
+            </div>
+          </Reveal>
+        </section>
+
+        {/* Studio */}
+        <section id="studio" className="wrap section">
+          <h2 className="sec-label font-mono">Studio</h2>
+          <Reveal>
+            <p className="studio-lede font-display">
+              Two builders who&apos;d rather ship something small and{" "}
+              <em>working</em> than something big and theoretical.
+            </p>
+          </Reveal>
+          <div className="qa">
+            {studioQA.map((item) => (
+              <Reveal key={item.q}>
+                <div className="qa-item">
+                  <div className="qa-q font-mono">{item.q}</div>
+                  <p className="qa-a">{item.a}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="wrap section">
+          <h2 className="sec-label font-mono">Contact</h2>
+          <p className="contact-lede">
+            A site that needs building, or a repetitive process that should run
+            itself — send the outcome you want and we&apos;ll scope it.
+          </p>
+          <div className="contact-row">
+            <CopyEmail />
+            <a
+              className="btn"
+              href={GITHUB}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              github.com/aly-ghonaim
+            </a>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <footer className="footer">
+        <div className="wrap footer-inner">
+          <div>
+            <div className="footer-brand font-display">
+              double<i>a</i><i>a</i>
+            </div>
+            <p className="footer-note font-mono">
+              Web development &amp; AI automation — Aly Ghonaim &amp; Abdullah.
+            </p>
+          </div>
+          <div className="footer-contact font-mono">
+            <div>
+              <span className="ct-lbl">aly</span>&nbsp;&nbsp;
+              <span className="selectable">{EMAIL}</span>
+            </div>
+            <div>
+              <span className="ct-lbl">aly</span>&nbsp;&nbsp;
+              <a href={GITHUB} target="_blank" rel="noopener noreferrer">
+                github.com/aly-ghonaim
+              </a>
+            </div>
+            <div>
+              <span className="ct-lbl">abdullah</span>&nbsp;&nbsp;— contact to
+              add
+            </div>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }
