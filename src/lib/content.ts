@@ -1,5 +1,6 @@
 export type Author = "Aly" | "Abdullah";
 export type StatusKind = "ok" | "pending" | "neutral";
+export type TileSize = "featured" | "narrow" | "wide";
 
 export interface Project {
   title: string;
@@ -10,6 +11,7 @@ export interface Project {
   flow?: string[];
   status: string;
   statusKind: StatusKind;
+  size?: TileSize;
 }
 
 export const web: Project[] = [
@@ -22,6 +24,7 @@ export const web: Project[] = [
     stack: ["React", "Vite", "GSAP", "Tailwind"],
     status: "Built",
     statusKind: "ok",
+    size: "featured",
   },
   {
     title: "Old Mill Cafe",
@@ -32,6 +35,7 @@ export const web: Project[] = [
     stack: ["HTML5", "CSS3", "JavaScript", "Local SEO"],
     status: "Template · reusable",
     statusKind: "neutral",
+    size: "narrow",
   },
   {
     title: "Dolly House KW",
@@ -42,6 +46,7 @@ export const web: Project[] = [
     stack: ["Shopify Liquid", "RTL / i18n", "security-audited"],
     status: "Live client",
     statusKind: "ok",
+    size: "wide",
   },
 ];
 
@@ -56,6 +61,7 @@ export const automation: Project[] = [
     stack: ["n8n"],
     status: "Built",
     statusKind: "ok",
+    size: "featured",
   },
   {
     title: "Autonomous Video Publisher",
@@ -67,6 +73,7 @@ export const automation: Project[] = [
     stack: ["n8n"],
     status: "Built",
     statusKind: "ok",
+    size: "narrow",
   },
   {
     title: "Rebell Membership & Payments",

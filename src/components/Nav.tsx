@@ -9,56 +9,62 @@ function getInitialTheme(): Theme {
     const saved = localStorage.getItem("daa-theme");
     if (saved === "light" || saved === "dark") return saved;
   } catch {
-    // ignore storage errors
+    // localStorage blocked — fall through to system preference
   }
-  if (typeof window !== "undefined" && window.matchMedia) {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+  if (
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  ) {
+    return "dark";
   }
   return "light";
 }
 
 export function Nav() {
   const [theme, setTheme] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setTheme(getInitialTheme());
-    setMounted(true);
   }, []);
 
-  const handleToggle = () => {
+  const toggleTheme = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
     setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
     try {
       localStorage.setItem("daa-theme", next);
     } catch {
-      // ignore storage errors
+      // persistence unavailable — the choice still applies for this session
     }
   };
 
   return (
-    <header className="bar">
-      <div className="wrap bar-inner">
-        <a href="#top" className="brand" aria-label="doubleaa home">
-          double<i>a</i><i>a</i>
+    <nav className="nav" aria-label="Primary">
+      <div className="pill">
+        <a href="#top" className="brand">
+          double<i>a</i>
+          <i>a</i>
         </a>
-        <nav className="nav-links" aria-label="Sections">
+        <div className="nav-links">
           <a href="#work">Work</a>
           <a href="#studio">Studio</a>
           <a href="#contact">Contact</a>
-        </nav>
+        </div>
+      </div>
+      <div className="pill pill-right">
+        <a href="#contact" className="nav-cta">
+          Start a project
+        </a>
         <button
           type="button"
           className="toggle"
-          onClick={handleToggle}
-          aria-label="Toggle colour theme"
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          title="Toggle theme"
         >
-          {mounted ? (theme === "dark" ? "☾ dark" : "☀ light") : "theme"}
+          {theme === "dark" ? "☀" : "☾"}
         </button>
       </div>
-    </header>
+    </nav>
   );
 }
