@@ -43,7 +43,7 @@ export default function Home() {
                 </span>
               </div>
               <div className="who">
-                <span className="who-name">Abdullah</span>
+                <span className="who-name">Abdullah Eissa</span>
                 <span className="who-role">Full-stack &amp; AI automation</span>
               </div>
             </div>
@@ -145,7 +145,8 @@ export default function Home() {
               <i>a</i>
             </div>
             <p className="footer-note">
-              Web development &amp; AI automation — Aly Ghonaim &amp; Abdullah.
+              Web development &amp; AI automation — Aly Ghonaim &amp; Abdullah
+              Eissa.
             </p>
           </div>
           <div className="footer-contact">
@@ -160,7 +161,8 @@ export default function Home() {
               </a>
             </div>
             <div>
-              <span className="ct-lbl">abdullah</span>— contact to add
+              <span className="ct-lbl">abdullah</span>
+              <span className="selectable">Abdullah Eissa</span>
             </div>
           </div>
         </div>
