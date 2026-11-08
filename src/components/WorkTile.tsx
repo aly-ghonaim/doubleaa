@@ -2,23 +2,18 @@ import type { Project } from "@/lib/content";
 
 interface WorkTileProps {
   project: Project;
-  index: number;
 }
 
-export function WorkTile({ project, index }: WorkTileProps) {
-  const { title, role, blurb, author, stack, flow, status, statusKind, size } =
+export function WorkTile({ project }: WorkTileProps) {
+  const { title, role, blurb, author, stack, flow, status, statusKind } =
     project;
 
   return (
-    <article className={`tile${size ? ` ${size}` : ""}`}>
+    <article className="tile">
       <div className="tile-head">
-        <span className="tile-index">
-          {String(index + 1).padStart(2, "0")}
-        </span>
+        <h4 className="font-display">{title}</h4>
         <span className={`status status-${statusKind}`}>{status}</span>
       </div>
-
-      <h4 className="font-display">{title}</h4>
       <p className="tile-role">{role}</p>
       <p className="tile-blurb">{blurb}</p>
 

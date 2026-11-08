@@ -7,21 +7,15 @@ type Theme = "light" | "dark";
 function getInitialTheme(): Theme {
   try {
     const saved = localStorage.getItem("daa-theme");
-    if (saved === "light" || saved === "dark") return saved;
+    if (saved === "light") return "light";
   } catch {
-    // localStorage blocked — fall through to system preference
+    // localStorage blocked — fall through to the committed default
   }
-  if (
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-  ) {
-    return "dark";
-  }
-  return "light";
+  return "dark";
 }
 
 export function Nav() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
     setTheme(getInitialTheme());
@@ -39,32 +33,31 @@ export function Nav() {
   };
 
   return (
-    <nav className="nav" aria-label="Primary">
-      <div className="pill">
+    <header className="bar">
+      <div className="bar-inner">
         <a href="#top" className="brand">
-          double<i>a</i>
-          <i>a</i>
+          double<i>aa</i>
         </a>
-        <div className="nav-links">
+        <nav className="bar-nav" aria-label="Primary">
           <a href="#work">Work</a>
           <a href="#studio">Studio</a>
           <a href="#contact">Contact</a>
+        </nav>
+        <div className="bar-tools">
+          <button
+            type="button"
+            className="toggle"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title="Toggle theme"
+          >
+            {theme === "dark" ? "☀" : "☾"}
+          </button>
+          <a href="#contact" className="bar-cta">
+            Start a project
+          </a>
         </div>
       </div>
-      <div className="pill pill-right">
-        <a href="#contact" className="nav-cta">
-          Start a project
-        </a>
-        <button
-          type="button"
-          className="toggle"
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          title="Toggle theme"
-        >
-          {theme === "dark" ? "☀" : "☾"}
-        </button>
-      </div>
-    </nav>
+    </header>
   );
 }

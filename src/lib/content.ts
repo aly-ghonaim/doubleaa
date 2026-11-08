@@ -98,6 +98,38 @@ export const automation: Project[] = [
   },
 ];
 
+export interface Capability {
+  title: string;
+  body: string;
+  items: string[];
+}
+
+export const capabilities: Capability[] = [
+  {
+    title: "Websites & storefronts",
+    body: "The part your customers see. Fast, responsive, and built to convert — from a one-page launch to a full custom storefront.",
+    items: [
+      "Marketing sites & landing pages",
+      "Custom Shopify themes, Arabic-first (RTL) or English",
+      "React & Next.js front-ends",
+      "Security-audited before it goes live",
+    ],
+  },
+  {
+    title: "AI & n8n automation",
+    body: "The machine behind it. The repetitive work that should run itself — triaged, routed, and answered without a human in the loop.",
+    items: [
+      "Form → AI triage → sheet → email pipelines",
+      "Content generation & auto-publishing",
+      "Vision & LLM integrations inside real apps",
+      "Scheduled jobs, webhooks, and ledgers",
+    ],
+  },
+];
+
+// Honest proof — the tools we actually build with, not clients we don't have.
+export const tools = ["Next.js", "React", "Shopify", "n8n", "OpenAI", "Tailwind"];
+
 export const studioQA: { q: string; a: string }[] = [
   {
     q: "What we build",

@@ -1,24 +1,23 @@
 import type { Metadata } from "next";
-import { Fraunces, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
 const hanken = Hanken_Grotesk({
-  variable: "--font-hanken",
+  variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   display: "swap",
 });
 
 const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
+  variable: "--font-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
@@ -27,7 +26,7 @@ const jetbrains = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "doubleaa — web development & AI automation",
   description:
-    "A two-person studio by Aly Ghonaim & Abdullah. We build responsive websites and the n8n/AI automations that run behind them.",
+    "A two-person studio by Aly Ghonaim & Abdullah Eissa. We build responsive websites and the n8n/AI automations that run behind them.",
   openGraph: {
     title: "doubleaa — web development & AI automation",
     description:
@@ -43,15 +42,15 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <script
-          // Apply saved theme before paint to avoid a flash.
+          // Dark is the committed identity; apply saved theme before paint to avoid a flash.
           dangerouslySetInnerHTML={{
             __html:
-              "try{var t=localStorage.getItem('daa-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}",
+              "try{var t=localStorage.getItem('daa-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}",
           }}
         />
       </head>
       <body
-        className={`${fraunces.variable} ${hanken.variable} ${jetbrains.variable}`}
+        className={`${bricolage.variable} ${hanken.variable} ${jetbrains.variable}`}
       >
         {children}
       </body>

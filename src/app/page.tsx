@@ -3,7 +3,15 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { Reveal } from "@/components/Reveal";
 import { WorkTile } from "@/components/WorkTile";
 import { CopyEmail } from "@/components/CopyEmail";
-import { web, automation, studioQA, EMAIL, GITHUB } from "@/lib/content";
+import {
+  web,
+  automation,
+  capabilities,
+  tools,
+  studioQA,
+  EMAIL,
+  GITHUB,
+} from "@/lib/content";
 import type { TileSize } from "@/lib/content";
 
 function cellClass(size?: TileSize): string {
@@ -18,62 +26,86 @@ export default function Home() {
       <main id="top">
         {/* Hero */}
         <section className="hero wrap">
-          <div className="hero-aura" aria-hidden="true">
-            <span />
-            <span />
-            <span />
+          <h1 className="hero-title font-display">
+            We build the website — and the{" "}
+            <span className="mark">machine</span> behind it.
+          </h1>
+          <p className="hero-lede">
+            We&apos;re Aly and Abdullah, a two-person studio. One of us comes
+            from the front end and security, the other from full-stack and AI
+            automation. We make clean, fast interfaces and the n8n workflows
+            behind them — first sketch to production — so the thing you launch
+            keeps running without you babysitting it.
+          </p>
+          <div className="hero-actions">
+            <a href="#contact" className="btn btn-primary">
+              Start a project
+            </a>
+            <a href="#work" className="btn btn-ghost">
+              See the work
+            </a>
           </div>
-          <div className="hero-inner">
-            <p className="eyebrow">A two-person studio · Web & AI automation</p>
-            <h1 className="hero-title font-display">
-              We build the <em>website</em> and the <em>machine</em> behind it.
-            </h1>
-            <p className="hero-lede">
-              We&apos;re Aly and Abdullah. One of us comes from the front end
-              and security, the other from full-stack and AI automation. We make
-              clean, fast interfaces and the n8n workflows behind them — first
-              sketch to production — so the thing you launch keeps running
-              without you babysitting it.
-            </p>
-            <div className="who-row">
-              <div className="who">
-                <span className="who-name">Aly Ghonaim</span>
-                <span className="who-role">
-                  Front-end &amp; security · Red Team Diploma
+          <div className="proof">
+            <span className="proof-label">Built with</span>
+            <div className="proof-list">
+              {tools.map((tool) => (
+                <span key={tool} className="proof-item">
+                  {tool}
                 </span>
-              </div>
-              <div className="who">
-                <span className="who-name">Abdullah Eissa</span>
-                <span className="who-role">Full-stack &amp; AI automation</span>
-              </div>
+              ))}
             </div>
+          </div>
+        </section>
+
+        {/* Capabilities */}
+        <section className="section wrap">
+          <h2 className="sec-title font-display">
+            Two halves of <span className="mark">one build.</span>
+          </h2>
+          <p className="sec-sub">
+            The interface your customers touch, and the automation that runs the
+            moment they do. We do both, so the handoff never falls between two
+            freelancers.
+          </p>
+          <div className="caps">
+            {capabilities.map((cap) => (
+              <Reveal key={cap.title}>
+                <div className="cap">
+                  <h3 className="font-display">{cap.title}</h3>
+                  <p>{cap.body}</p>
+                  <ul className="cap-list">
+                    {cap.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </section>
 
         {/* Work */}
         <section id="work" className="section wrap">
-          <div className="sec-head">
-            <p className="sec-label">Work</p>
-            <h2 className="sec-title font-display">
-              Sites that <em>look</em> the part, systems that <em>do</em> the
-              work.
-            </h2>
-          </div>
+          <h2 className="sec-title font-display">Selected work.</h2>
+          <p className="sec-sub">
+            Real projects with honest labels — built, live, designed, or in
+            progress. Nothing inflated.
+          </p>
 
           <h3 className="group-label">Web</h3>
           <div className="bento">
-            {web.map((project, i) => (
+            {web.map((project) => (
               <Reveal key={project.title} className={cellClass(project.size)}>
-                <WorkTile project={project} index={i} />
+                <WorkTile project={project} />
               </Reveal>
             ))}
           </div>
 
           <h3 className="group-label">Automation</h3>
           <div className="bento">
-            {automation.map((project, i) => (
+            {automation.map((project) => (
               <Reveal key={project.title} className={cellClass(project.size)}>
-                <WorkTile project={project} index={i} />
+                <WorkTile project={project} />
               </Reveal>
             ))}
             <Reveal className="cell-wide">
@@ -88,13 +120,11 @@ export default function Home() {
 
         {/* Studio */}
         <section id="studio" className="section wrap">
-          <div className="sec-head">
-            <p className="sec-label">Studio</p>
-          </div>
           <Reveal>
-            <p className="studio-lede">
+            <p className="studio-lede font-display">
               Two builders who&apos;d rather ship something small and{" "}
-              <em>working</em> than something big and theoretical.
+              <span className="mark">working</span> than something big and
+              theoretical.
             </p>
           </Reveal>
           <div className="qa">
@@ -112,19 +142,19 @@ export default function Home() {
         {/* Contact */}
         <section id="contact" className="section wrap">
           <Reveal>
-            <div className="contact-card">
-              <p className="sec-label">Contact</p>
-              <h2 className="sec-title font-display" style={{ marginTop: 10 }}>
-                Have something that needs <em>building</em>?
+            <div className="contact-band">
+              <h2 className="contact-title font-display">
+                Have something that needs{" "}
+                <span className="mark">building</span>?
               </h2>
-              <p className="contact-lede">
+              <p className="contact-sub">
                 A site that needs building, or a repetitive job that should run
                 itself — send us the outcome you want and we&apos;ll scope it.
               </p>
               <div className="contact-row">
                 <CopyEmail />
                 <a
-                  className="btn"
+                  className="btn btn-ghost"
                   href={GITHUB}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -141,8 +171,7 @@ export default function Home() {
         <div className="wrap footer-inner">
           <div>
             <div className="footer-brand">
-              double<i>a</i>
-              <i>a</i>
+              double<i>aa</i>
             </div>
             <p className="footer-note">
               Web development &amp; AI automation — Aly Ghonaim &amp; Abdullah
