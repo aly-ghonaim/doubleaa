@@ -1,35 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
 
-function getInitialTheme(): Theme {
-  try {
-    const saved = localStorage.getItem("daa-theme");
-    if (saved === "light") return "light";
-  } catch {
-    // localStorage blocked — fall through to the committed default
-  }
-  return "dark";
+// The theme lives on <html data-theme>, set before paint by the inline script in
+// layout.tsx. Reading it as an external store keeps SSR (always "dark") and the
+// client in agreement without a setState-in-effect.
+const THEME_EVENT = "daa-theme";
+function subscribeTheme(cb: () => void) {
+  window.addEventListener(THEME_EVENT, cb);
+  return () => window.removeEventListener(THEME_EVENT, cb);
+}
+function readTheme(): Theme {
+  return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
 }
 
 const SCROLL_THRESHOLD = 40;
 const MAGNET_PULL = 0.25;
 const MAGNET_MAX = 6;
 
+const SECTIONS = ["work", "studio", "contact"] as const;
+
 function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 export function Nav() {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const theme = useSyncExternalStore(subscribeTheme, readTheme, (): Theme => "dark");
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    setTheme(getInitialTheme());
-  }, []);
+  const navRef = useRef<HTMLElement>(null);
+  const inkRef = useRef<HTMLSpanElement>(null);
 
   // Condense the bar after a short scroll. Passive + rAF-throttled.
   useEffect(() => {
@@ -37,6 +40,13 @@ export function Nav() {
     const update = () => {
       frame = 0;
       setScrolled(window.scrollY > SCROLL_THRESHOLD);
+      // The section crossing 40% of the viewport is the current one.
+      const line = window.innerHeight * 0.4;
+      const current = SECTIONS.find((id) => {
+        const r = document.getElementById(id)?.getBoundingClientRect();
+        return r ? r.top <= line && r.bottom > line : false;
+      });
+      setActive(current ?? null);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -48,6 +58,20 @@ export function Nav() {
       if (frame) cancelAnimationFrame(frame);
     };
   }, []);
+
+  // Slide the indicator under the current section's link.
+  useEffect(() => {
+    const ink = inkRef.current;
+    const nav = navRef.current;
+    if (!ink || !nav) return;
+    const link = active ? nav.querySelector<HTMLAnchorElement>(`a[href="#${active}"]`) : null;
+    if (!link) {
+      ink.style.opacity = "0";
+      return;
+    }
+    ink.style.opacity = "1";
+    ink.style.transform = `translateX(${link.offsetLeft}px) scaleX(${link.offsetWidth})`;
+  }, [active]);
 
   // Magnetic CTA: a bounded pull toward the cursor, released on leave.
   useEffect(() => {
@@ -82,12 +106,12 @@ export function Nav() {
 
   const toggleTheme = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
     document.documentElement.setAttribute("data-theme", next);
+    window.dispatchEvent(new Event(THEME_EVENT));
     try {
       localStorage.setItem("daa-theme", next);
     } catch {
-      // persistence unavailable — the choice still applies for this session
+      // persistence unavailable: the choice still applies for this session
     }
   };
 
@@ -97,10 +121,13 @@ export function Nav() {
         <a href="#top" className="brand">
           Double<i>AA</i>
         </a>
-        <nav className="bar-nav" aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#studio">Studio</a>
-          <a href="#contact">Contact</a>
+        <nav className="bar-nav" aria-label="Primary" ref={navRef}>
+          {SECTIONS.map((id) => (
+            <a key={id} href={`#${id}`} aria-current={active === id ? "true" : undefined}>
+              {id[0].toUpperCase() + id.slice(1)}
+            </a>
+          ))}
+          <span className="nav-ink" ref={inkRef} aria-hidden="true" />
         </nav>
         <div className="bar-tools">
           <button

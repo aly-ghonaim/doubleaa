@@ -16,7 +16,7 @@ export function CapsAct() {
   const reduce = useReducedMotion();
   // 0 when the block's top enters the bottom of the viewport, 1 when its top
   // reaches 35% from the top: the link completes while it is in comfortable view.
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start 0.35"] });
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "start 0.5"] });
 
   const spread = useTransform(scrollYProgress, [0, 0.85], reduce ? [0, 0] : [1, 0], { clamp: true });
   const wipe = useTransform(scrollYProgress, [0.1, 0.9], reduce ? [0, 0] : [100, 0], { clamp: true });

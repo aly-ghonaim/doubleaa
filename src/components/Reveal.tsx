@@ -24,15 +24,15 @@ const FROM: Record<RevealVariant, { x?: number; y?: number; scale?: number }> = 
 };
 
 const DURATION: Record<RevealVariant, number> = {
-  rise: 0.55,
-  panel: 0.65,
-  left: 0.7,
-  right: 0.7,
+  rise: 0.4,
+  panel: 0.45,
+  left: 0.5,
+  right: 0.5,
 };
 
-// ~70ms per step, total stagger capped so a long grid never drags.
-const STEP = 0.07;
-const MAX_STAGGER = 0.33;
+// ~45ms per step, total stagger capped so a long grid never drags.
+const STEP = 0.045;
+const MAX_STAGGER = 0.2;
 
 export function Reveal({
   children,
@@ -53,7 +53,7 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, ...from }}
       whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{
         duration: reduce ? 0.2 : DURATION[variant],
         ease: EASE,

@@ -8,9 +8,9 @@ interface FlowRunProps {
   flow: string[];
 }
 
-const NODE_STAGGER = 0.06;
+const NODE_STAGGER = 0.04;
 // Pulse step between successive node/arrow beats — keep in sync with --pulse-step in CSS.
-const PULSE_STEP_MS = 110;
+const PULSE_STEP_MS = 75;
 
 /**
  * "The machine runs." Nodes assemble left-to-right when the tile enters view,
@@ -38,7 +38,7 @@ export function FlowRun({ flow }: FlowRunProps) {
   // First run once the nodes have assembled.
   useEffect(() => {
     if (!inView || reduce) return;
-    const t = window.setTimeout(run, flow.length * NODE_STAGGER * 1000 + 350);
+    const t = window.setTimeout(run, flow.length * NODE_STAGGER * 1000 + 200);
     return () => window.clearTimeout(t);
   }, [inView, reduce, run, flow.length]);
 
@@ -60,7 +60,7 @@ export function FlowRun({ flow }: FlowRunProps) {
           initial={{ opacity: 0, scale: reduce ? 1 : 0.85 }}
           animate={inView ? { opacity: 1, scale: 1 } : undefined}
           transition={{
-            duration: reduce ? 0.2 : 0.45,
+            duration: reduce ? 0.2 : 0.32,
             ease: EASE,
             delay: reduce ? 0 : i * NODE_STAGGER,
           }}

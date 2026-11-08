@@ -21,9 +21,9 @@ interface MaskRevealProps {
 export function MaskReveal({
   units,
   mode = "line",
-  stagger = 0.09,
+  stagger = 0.06,
   delay = 0,
-  duration = 0.7,
+  duration = 0.5,
 }: MaskRevealProps) {
   const reduce = useReducedMotion();
 

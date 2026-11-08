@@ -9,7 +9,7 @@ import { tools } from "@/lib/content";
  * globals.css (.hero-line / .hero-follow).
  */
 
-// Headline lines, each rising out of its own clipped band ~90ms apart.
+// Headline lines, each rising out of its own clipped band ~60ms apart.
 const LINES: ReactNode[] = [
   "We build",
   "the website,",
@@ -49,11 +49,16 @@ export function Hero() {
       </div>
       <div className="proof hero-follow" style={i(2)}>
         <span className="proof-label">Built with</span>
-        <div className="proof-list">
-          {tools.map((tool) => (
-            <span key={tool} className="proof-item">
-              {tool}
-            </span>
+        {/* Two identical tracks loop seamlessly; the copy is hidden from AT. */}
+        <div className="proof-list marquee">
+          {[false, true].map((dup) => (
+            <div key={String(dup)} className="marquee-track" aria-hidden={dup || undefined}>
+              {tools.map((tool) => (
+                <span key={tool} className="proof-item">
+                  {tool}
+                </span>
+              ))}
+            </div>
           ))}
         </div>
       </div>

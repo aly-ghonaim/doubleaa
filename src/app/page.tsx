@@ -2,6 +2,7 @@ import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Reveal } from "@/components/Reveal";
 import { Hero } from "@/components/Hero";
+import { PageFx } from "@/components/PageFx";
 import { CapsAct } from "@/components/CapsAct";
 import { PipelineRun } from "@/components/PipelineRun";
 import { DriftClose } from "@/components/DriftClose";
@@ -25,6 +26,10 @@ const STUDIO_WORDS = toWords([
   "than something big and theoretical.",
 ]);
 
+const CAPS_TITLE = toWords(["Two halves of", { mark: "one build." }]);
+const WORK_TITLE = toWords(["Selected work."]);
+const CONTACT_TITLE = toWords(["Have something that needs", { mark: "building?" }]);
+
 function cellClass(size?: TileSize): string {
   return size ? `cell-${size}` : "";
 }
@@ -33,6 +38,7 @@ export default function Home() {
   return (
     <>
       <SmoothScroll />
+      <PageFx />
       <Nav />
       <main id="top">
         <Hero />
@@ -40,7 +46,7 @@ export default function Home() {
         {/* Capabilities */}
         <section className="section wrap">
           <h2 className="sec-title font-display">
-            Two halves of <span className="mark">one build.</span>
+            <MaskReveal units={CAPS_TITLE} mode="word" stagger={0.04} duration={0.45} />
           </h2>
           <p className="sec-sub">
             The interface your customers touch, and the automation that runs the
@@ -55,7 +61,9 @@ export default function Home() {
 
         {/* Work */}
         <section id="work" className="section wrap">
-          <h2 className="sec-title font-display">Selected work.</h2>
+          <h2 className="sec-title font-display">
+            <MaskReveal units={WORK_TITLE} mode="word" stagger={0.04} duration={0.45} />
+          </h2>
           <p className="sec-sub">
             Real projects with honest labels: built, live, designed, or in
             progress. Nothing inflated.
@@ -100,7 +108,7 @@ export default function Home() {
         {/* Studio */}
         <section id="studio" className="section wrap">
           <p className="studio-lede font-display">
-            <MaskReveal units={STUDIO_WORDS} mode="word" stagger={0.03} duration={0.6} />
+            <MaskReveal units={STUDIO_WORDS} mode="word" stagger={0.018} duration={0.42} />
           </p>
           <div className="qa">
             {studioQA.map((item, i) => (
@@ -121,8 +129,7 @@ export default function Home() {
             <div className="contact-band">
               <LinkMark className="contact-mark" title="DoubleAA mark: the website and the machine, linked" />
               <h2 className="contact-title font-display">
-                Have something that needs{" "}
-                <span className="mark">building</span>?
+                <MaskReveal units={CONTACT_TITLE} mode="word" stagger={0.04} duration={0.45} />
               </h2>
               <p className="contact-sub">
                 A site that needs building, or a repetitive job that should run
