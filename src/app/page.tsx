@@ -17,10 +17,11 @@ export default function Home() {
             behind it.
           </h1>
           <p className="hero-lede">
-            Two people: one from the front end and security, one from
-            full-stack and AI automation. We ship clean, responsive sites and
-            the n8n workflows that quietly do the repetitive work — so the thing
-            you launch keeps running without you in the loop.
+            We&apos;re Aly and Abdullah. One of us comes from the front end and
+            security, the other from full-stack and AI automation. We make
+            clean, fast interfaces and the n8n workflows behind them — first
+            sketch to production — so the thing you launch keeps running without
+            you babysitting it.
           </p>
           <div className="who-row">
             <div className="who">
@@ -94,8 +95,8 @@ export default function Home() {
         <section id="contact" className="wrap section">
           <h2 className="sec-label font-mono">Contact</h2>
           <p className="contact-lede">
-            A site that needs building, or a repetitive process that should run
-            itself — send the outcome you want and we&apos;ll scope it.
+            A site that needs building, or a repetitive job that should run
+            itself — send us the outcome you want and we&apos;ll scope it.
           </p>
           <div className="contact-row">
             <CopyEmail />

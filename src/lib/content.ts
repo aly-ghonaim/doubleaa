@@ -94,15 +94,15 @@ export const automation: Project[] = [
 export const studioQA: { q: string; a: string }[] = [
   {
     q: "What we build",
-    a: "Marketing sites and storefronts on the front, n8n and AI pipelines on the back. We like projects where a website and an automation meet — a form that feeds a workflow, a store that runs its own busywork.",
+    a: "Marketing sites and storefronts on the front, n8n and AI pipelines behind them. The work we like best is where the two meet — a form that feeds a workflow, a store that runs its own admin.",
   },
   {
     q: "How we work",
-    a: "Tell us the outcome, not the ticket. We scope it down to the smallest thing that actually solves it, build that, and only add once it earns its place. One of us comes from security, so what we ship is built to hold up.",
+    a: "Tell us the outcome, not the ticket. We cut it down to the smallest thing that actually solves it, ship that, and add more only once it earns its place. One of us is a security person, so what we hand over is built to hold up.",
   },
   {
     q: "How to reach us",
-    a: "Email with what you're building and where it's getting stuck. We read everything and write back.",
+    a: "Email us what you're building and where it's getting stuck. We read everything, and we write back.",
   },
 ];
 
