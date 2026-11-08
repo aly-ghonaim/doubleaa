@@ -2,6 +2,10 @@ import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Reveal } from "@/components/Reveal";
 import { Hero } from "@/components/Hero";
+import { CapsAct } from "@/components/CapsAct";
+import { PipelineRun } from "@/components/PipelineRun";
+import { DriftClose } from "@/components/DriftClose";
+import { LinkMark } from "@/components/LinkMark";
 import { MaskReveal } from "@/components/MaskReveal";
 import { toWords } from "@/lib/words";
 import { WorkTile } from "@/components/WorkTile";
@@ -9,7 +13,6 @@ import { CopyEmail } from "@/components/CopyEmail";
 import {
   web,
   automation,
-  capabilities,
   studioQA,
   EMAIL,
   GITHUB,
@@ -44,28 +47,17 @@ export default function Home() {
             moment they do. We do both, so the handoff never falls between two
             freelancers.
           </p>
-          <div className="caps">
-            {capabilities.map((cap, i) => (
-              <Reveal key={cap.title} variant={i % 2 === 0 ? "left" : "right"}>
-                <div className="cap">
-                  <h3 className="font-display">{cap.title}</h3>
-                  <p>{cap.body}</p>
-                  <ul className="cap-list">
-                    {cap.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <CapsAct />
         </section>
+
+        {/* The peak: the machine runs */}
+        <PipelineRun />
 
         {/* Work */}
         <section id="work" className="section wrap">
           <h2 className="sec-title font-display">Selected work.</h2>
           <p className="sec-sub">
-            Real projects with honest labels — built, live, designed, or in
+            Real projects with honest labels: built, live, designed, or in
             progress. Nothing inflated.
           </p>
 
@@ -124,15 +116,17 @@ export default function Home() {
 
         {/* Contact */}
         <section id="contact" className="section wrap">
+          <DriftClose>
           <Reveal>
             <div className="contact-band">
+              <LinkMark className="contact-mark" title="DoubleAA mark: the website and the machine, linked" />
               <h2 className="contact-title font-display">
                 Have something that needs{" "}
                 <span className="mark">building</span>?
               </h2>
               <p className="contact-sub">
                 A site that needs building, or a repetitive job that should run
-                itself — send us the outcome you want and we&apos;ll scope it.
+                itself. Send us the outcome you want and we&apos;ll scope it.
               </p>
               <div className="contact-row">
                 <CopyEmail />
@@ -147,6 +141,7 @@ export default function Home() {
               </div>
             </div>
           </Reveal>
+          </DriftClose>
         </section>
       </main>
 
@@ -154,10 +149,10 @@ export default function Home() {
         <div className="wrap footer-inner">
           <div>
             <div className="footer-brand">
-              double<i>aa</i>
+              Double<i>AA</i>
             </div>
             <p className="footer-note">
-              Web development &amp; AI automation — Aly Ghonaim &amp; Abdullah
+              Web development &amp; AI automation, by Aly Ghonaim &amp; Abdullah
               Eissa.
             </p>
           </div>
