@@ -9,7 +9,7 @@ import { DriftClose } from "@/components/DriftClose";
 import { LinkMark } from "@/components/LinkMark";
 import { MaskReveal } from "@/components/MaskReveal";
 import { toWords } from "@/lib/words";
-import { WorkTile } from "@/components/WorkTile";
+import { ProjectFolder } from "@/components/ProjectFolder";
 import { CopyEmail } from "@/components/CopyEmail";
 import {
   web,
@@ -18,7 +18,6 @@ import {
   EMAIL,
   GITHUB,
 } from "@/lib/content";
-import type { TileSize } from "@/lib/content";
 
 const STUDIO_WORDS = toWords([
   "Two builders who’d rather ship something small and",
@@ -29,10 +28,6 @@ const STUDIO_WORDS = toWords([
 const CAPS_TITLE = toWords(["Two halves of", { mark: "one build." }]);
 const WORK_TITLE = toWords(["Selected work."]);
 const CONTACT_TITLE = toWords(["Have something that needs", { mark: "building?" }]);
-
-function cellClass(size?: TileSize): string {
-  return size ? `cell-${size}` : "";
-}
 
 export default function Home() {
   return (
@@ -70,39 +65,25 @@ export default function Home() {
           </p>
 
           <h3 className="group-label">Web</h3>
-          <div className="bento">
+          <div className="folders">
             {web.map((project, i) => (
-              <Reveal
-                key={project.title}
-                variant="panel"
-                index={i}
-                className={cellClass(project.size)}
-              >
-                <WorkTile project={project} />
-              </Reveal>
+              <ProjectFolder key={project.title} project={project} index={i} />
             ))}
           </div>
 
           <h3 className="group-label">Automation</h3>
-          <div className="bento">
+          <div className="folders">
             {automation.map((project, i) => (
-              <Reveal
-                key={project.title}
-                variant="panel"
-                index={i}
-                className={cellClass(project.size)}
-              >
-                <WorkTile project={project} />
-              </Reveal>
+              <ProjectFolder key={project.title} project={project} index={web.length + i} />
             ))}
-            <Reveal className="cell-wide" variant="panel" index={automation.length}>
-              <div className="slot">
-                <b className="font-display">More automations in progress</b>
-                Additional n8n workflows are being repurposed for the studio and
-                will be added here as they land.
-              </div>
-            </Reveal>
           </div>
+          <Reveal className="slot-row" variant="panel">
+            <div className="slot">
+              <b className="font-display">More automations in progress</b>
+              Additional n8n workflows are being repurposed for the studio and
+              will be added here as they land.
+            </div>
+          </Reveal>
         </section>
 
         {/* Studio */}

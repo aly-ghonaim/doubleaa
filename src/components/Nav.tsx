@@ -1,20 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-
-type Theme = "light" | "dark";
-
-// The theme lives on <html data-theme>, set before paint by the inline script in
-// layout.tsx. Reading it as an external store keeps SSR (always "dark") and the
-// client in agreement without a setState-in-effect.
-const THEME_EVENT = "daa-theme";
-function subscribeTheme(cb: () => void) {
-  window.addEventListener(THEME_EVENT, cb);
-  return () => window.removeEventListener(THEME_EVENT, cb);
-}
-function readTheme(): Theme {
-  return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
-}
+import { useEffect, useRef, useState } from "react";
+import { setTheme, useTheme, type Theme } from "@/lib/theme";
 
 const SCROLL_THRESHOLD = 40;
 const MAGNET_PULL = 0.25;
@@ -27,7 +14,7 @@ function prefersReducedMotion(): boolean {
 }
 
 export function Nav() {
-  const theme = useSyncExternalStore(subscribeTheme, readTheme, (): Theme => "dark");
+  const theme = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string | null>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
@@ -106,13 +93,7 @@ export function Nav() {
 
   const toggleTheme = () => {
     const next: Theme = theme === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
-    window.dispatchEvent(new Event(THEME_EVENT));
-    try {
-      localStorage.setItem("daa-theme", next);
-    } catch {
-      // persistence unavailable: the choice still applies for this session
-    }
+    setTheme(next);
   };
 
   return (

@@ -44,7 +44,7 @@ export function FlowRun({ flow }: FlowRunProps) {
 
   // Re-run when the whole tile is hovered, not just the chips.
   useEffect(() => {
-    const tile = ref.current?.closest(".tile");
+    const tile = ref.current?.closest(".tile, .pf");
     if (!tile || reduce) return;
     tile.addEventListener("pointerenter", run);
     return () => tile.removeEventListener("pointerenter", run);
