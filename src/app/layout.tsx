@@ -48,6 +48,10 @@ export default function RootLayout({
               "try{var t=localStorage.getItem('daa-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}",
           }}
         />
+        <noscript>
+          {/* Without JS, entrance animations never run — show everything at rest. */}
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body
         className={`${bricolage.variable} ${hanken.variable} ${jetbrains.variable}`}

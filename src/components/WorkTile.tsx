@@ -1,3 +1,4 @@
+import { FlowRun } from "@/components/FlowRun";
 import type { Project } from "@/lib/content";
 
 interface WorkTileProps {
@@ -17,16 +18,7 @@ export function WorkTile({ project }: WorkTileProps) {
       <p className="tile-role">{role}</p>
       <p className="tile-blurb">{blurb}</p>
 
-      {flow && (
-        <div className="flow" aria-label="Workflow steps">
-          {flow.map((node, i) => (
-            <span key={node} className="flow-step">
-              <span className="node">{node}</span>
-              {i < flow.length - 1 && <span className="arr">→</span>}
-            </span>
-          ))}
-        </div>
-      )}
+      {flow && <FlowRun flow={flow} />}
 
       <div className="tile-spacer" />
 

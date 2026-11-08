@@ -1,18 +1,26 @@
 import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Reveal } from "@/components/Reveal";
+import { Hero } from "@/components/Hero";
+import { MaskReveal } from "@/components/MaskReveal";
+import { toWords } from "@/lib/words";
 import { WorkTile } from "@/components/WorkTile";
 import { CopyEmail } from "@/components/CopyEmail";
 import {
   web,
   automation,
   capabilities,
-  tools,
   studioQA,
   EMAIL,
   GITHUB,
 } from "@/lib/content";
 import type { TileSize } from "@/lib/content";
+
+const STUDIO_WORDS = toWords([
+  "Two builders who’d rather ship something small and",
+  { mark: "working" },
+  "than something big and theoretical.",
+]);
 
 function cellClass(size?: TileSize): string {
   return size ? `cell-${size}` : "";
@@ -24,38 +32,7 @@ export default function Home() {
       <SmoothScroll />
       <Nav />
       <main id="top">
-        {/* Hero */}
-        <section className="hero wrap">
-          <h1 className="hero-title font-display">
-            We build the website — and the{" "}
-            <span className="mark">machine</span> behind it.
-          </h1>
-          <p className="hero-lede">
-            We&apos;re Aly and Abdullah, a two-person studio. One of us comes
-            from the front end and security, the other from full-stack and AI
-            automation. We make clean, fast interfaces and the n8n workflows
-            behind them — first sketch to production — so the thing you launch
-            keeps running without you babysitting it.
-          </p>
-          <div className="hero-actions">
-            <a href="#contact" className="btn btn-primary">
-              Start a project
-            </a>
-            <a href="#work" className="btn btn-ghost">
-              See the work
-            </a>
-          </div>
-          <div className="proof">
-            <span className="proof-label">Built with</span>
-            <div className="proof-list">
-              {tools.map((tool) => (
-                <span key={tool} className="proof-item">
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Hero />
 
         {/* Capabilities */}
         <section className="section wrap">
@@ -68,8 +45,8 @@ export default function Home() {
             freelancers.
           </p>
           <div className="caps">
-            {capabilities.map((cap) => (
-              <Reveal key={cap.title}>
+            {capabilities.map((cap, i) => (
+              <Reveal key={cap.title} variant={i % 2 === 0 ? "left" : "right"}>
                 <div className="cap">
                   <h3 className="font-display">{cap.title}</h3>
                   <p>{cap.body}</p>
@@ -94,8 +71,13 @@ export default function Home() {
 
           <h3 className="group-label">Web</h3>
           <div className="bento">
-            {web.map((project) => (
-              <Reveal key={project.title} className={cellClass(project.size)}>
+            {web.map((project, i) => (
+              <Reveal
+                key={project.title}
+                variant="panel"
+                index={i}
+                className={cellClass(project.size)}
+              >
                 <WorkTile project={project} />
               </Reveal>
             ))}
@@ -103,12 +85,17 @@ export default function Home() {
 
           <h3 className="group-label">Automation</h3>
           <div className="bento">
-            {automation.map((project) => (
-              <Reveal key={project.title} className={cellClass(project.size)}>
+            {automation.map((project, i) => (
+              <Reveal
+                key={project.title}
+                variant="panel"
+                index={i}
+                className={cellClass(project.size)}
+              >
                 <WorkTile project={project} />
               </Reveal>
             ))}
-            <Reveal className="cell-wide">
+            <Reveal className="cell-wide" variant="panel" index={automation.length}>
               <div className="slot">
                 <b className="font-display">More automations in progress</b>
                 Additional n8n workflows are being repurposed for the studio and
@@ -120,16 +107,12 @@ export default function Home() {
 
         {/* Studio */}
         <section id="studio" className="section wrap">
-          <Reveal>
-            <p className="studio-lede font-display">
-              Two builders who&apos;d rather ship something small and{" "}
-              <span className="mark">working</span> than something big and
-              theoretical.
-            </p>
-          </Reveal>
+          <p className="studio-lede font-display">
+            <MaskReveal units={STUDIO_WORDS} mode="word" stagger={0.03} duration={0.6} />
+          </p>
           <div className="qa">
-            {studioQA.map((item) => (
-              <Reveal key={item.q}>
+            {studioQA.map((item, i) => (
+              <Reveal key={item.q} index={i}>
                 <div className="qa-item">
                   <div className="qa-q">{item.q}</div>
                   <p className="qa-a">{item.a}</p>
