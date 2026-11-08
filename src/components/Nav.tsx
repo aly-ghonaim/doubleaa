@@ -95,7 +95,7 @@ export function Nav() {
     <header className={scrolled ? "bar is-scrolled" : "bar"}>
       <div className="bar-inner">
         <a href="#top" className="brand">
-          Double<i>AA</i>
+          double<i>aa</i>
         </a>
         <nav className="bar-nav" aria-label="Primary">
           <a href="#work">Work</a>
