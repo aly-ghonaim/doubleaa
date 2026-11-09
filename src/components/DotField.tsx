@@ -7,7 +7,7 @@ const GAP = 22;
 const REACH = 160; // px around the pointer that responds
 const FOLLOW = 0.16; // pointer easing per 60Hz frame
 const FADE = 0.08; // on/off easing per 60Hz frame
-const CORAL = "232, 102, 74"; // --cobalt, as rgb for canvas
+const CORAL = "255, 77, 46"; // --cobalt, as rgb for canvas
 
 /** Swells the halftone grid around the pointer. Fine pointers with motion allowed only;
     everyone else keeps the static CSS grid. Redraws only while something is changing. */

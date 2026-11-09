@@ -89,7 +89,7 @@ export function ContactForm() {
         </p>
       )}
 
-      <button type="submit" className="btn btn-primary cf-submit" disabled={sending}>
+      <button type="submit" className="btn shiny cf-submit" disabled={sending}>
         {sending ? "Sending…" : "Send message"}
       </button>
     </form>

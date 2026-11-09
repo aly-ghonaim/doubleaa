@@ -95,7 +95,7 @@ export function Nav() {
           <Link href="/contact">Contact</Link>
         </nav>
         <div className="bar-tools">
-          <Link href="/contact" className="bar-cta" ref={ctaRef}>
+          <Link href="/contact" className="bar-cta shiny" ref={ctaRef}>
             Start a project
           </Link>
           {/* phones only: the links fold into a sheet under the bar */}

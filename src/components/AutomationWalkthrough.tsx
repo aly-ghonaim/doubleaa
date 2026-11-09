@@ -5,10 +5,10 @@ import DimensionalWorkflowHero from "@/components/ui/dimensional-workflow-hero";
 import type { ScrollExperienceContent, WorkflowChapter } from "@/components/ui/dimensional-workflow-hero";
 import { automation } from "@/lib/content";
 
-// Token colours as hex (coral accent, peach glow): node colours also feed SVG
+// Token colours as hex (electric coral, luminous aqua): node colours also feed SVG
 // gradient stops, which can't read CSS vars.
-const COBALT = "#e8664a";
-const FLAME = "#f2d4b0";
+const COBALT = "#ff4d2e";
+const AQUA = "#2ee6c8";
 const SHADOW = "#060204";
 
 function project(title: string) {
@@ -60,7 +60,7 @@ const content: ScrollExperienceContent = {
         nodes: [
           { icon: "message-square", label: "Jotform", caption: "NEW SUBMISSION", x: 2, y: 38, step: 0, color: COBALT },
           { icon: "bot", label: "OpenAI", caption: "EVALUATES", x: 26, y: 38, step: 1, color: COBALT },
-          { icon: "shield-check", label: "If", caption: "VALIDATION RULES", x: 50, y: 38, step: 1, color: FLAME },
+          { icon: "shield-check", label: "If", caption: "VALIDATION RULES", x: 50, y: 38, step: 1, color: AQUA },
           { icon: "database", label: "Sheets", caption: "LEAD SYNCED", x: 76, y: 16, step: 2, color: COBALT },
           { icon: "mail", label: "Gmail", caption: "TAILORED REPLY", x: 76, y: 60, step: 2, color: COBALT },
         ],
@@ -71,7 +71,7 @@ const content: ScrollExperienceContent = {
           { from: 2, to: 4 },
         ],
         note: "ONE SUBMISSION · NO HUMAN IN THE LOOP",
-        gradient: [COBALT, COBALT, FLAME],
+        gradient: [COBALT, COBALT, AQUA],
       },
     }),
     chapter("Autonomous Video Publisher", {
@@ -86,7 +86,7 @@ const content: ScrollExperienceContent = {
         nodes: [
           { icon: "bell", label: "Telegram / cron", caption: "TRIGGER", x: 2, y: 38, step: 0, color: COBALT },
           { icon: "bot", label: "GPT-4", caption: "WRITES THE SCRIPT", x: 27, y: 16, step: 1, color: COBALT },
-          { icon: "clapperboard", label: "Render", caption: "4 SEGMENTS IN PARALLEL", x: 52, y: 60, step: 1, color: FLAME },
+          { icon: "clapperboard", label: "Render", caption: "4 SEGMENTS IN PARALLEL", x: 52, y: 60, step: 1, color: AQUA },
           { icon: "upload", label: "YouTube API", caption: "PUBLISHED · RETRIES", x: 77, y: 38, step: 2, color: COBALT },
         ],
         edges: [
@@ -95,7 +95,7 @@ const content: ScrollExperienceContent = {
           { from: 2, to: 3 },
         ],
         note: "ONE TRIGGER · ONE PUBLISHED VIDEO",
-        gradient: [COBALT, FLAME, COBALT],
+        gradient: [COBALT, AQUA, COBALT],
       },
     }),
     chapter("Rebell Membership & Payments", {
@@ -109,7 +109,7 @@ const content: ScrollExperienceContent = {
       diagram: {
         nodes: [
           { icon: "credit-card", label: "Payment", caption: "MEMBER PAYS", x: 3, y: 38, step: 0, color: COBALT },
-          { icon: "shield-check", label: "2FA confirm", caption: "MUST PASS", x: 29, y: 38, step: 1, color: FLAME },
+          { icon: "shield-check", label: "2FA confirm", caption: "MUST PASS", x: 29, y: 38, step: 1, color: AQUA },
           { icon: "database", label: "Recorded", caption: "MONEY TRACKED", x: 60, y: 16, step: 2, color: COBALT },
           { icon: "user-round", label: "Subscription", caption: "MEMBER UP TO DATE", x: 60, y: 60, step: 2, color: COBALT },
         ],
@@ -119,7 +119,7 @@ const content: ScrollExperienceContent = {
           { from: 2, to: 3, out: "bottom", in: "top" },
         ],
         note: "NOTHING IS RECORDED WITHOUT CONFIRMATION",
-        gradient: [COBALT, FLAME, COBALT],
+        gradient: [COBALT, AQUA, COBALT],
       },
     }),
   ],
@@ -146,7 +146,7 @@ const theme = {
   "--color-primary": "var(--cobalt)",
   "--color-primary-foreground": "var(--paper)",
   "--workflow-shadow-color": SHADOW,
-  "--workflow-signal-color": "var(--flame)",
+  "--workflow-signal-color": "var(--teal)",
   "--font-hero-body": "var(--font-sans), system-ui, sans-serif",
   "--font-hero-display": "var(--font-display), Georgia, serif",
   "--font-hero-mono": "var(--font-mono), ui-monospace, monospace",
