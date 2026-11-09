@@ -5,10 +5,11 @@ import DimensionalWorkflowHero from "@/components/ui/dimensional-workflow-hero";
 import type { ScrollExperienceContent, WorkflowChapter } from "@/components/ui/dimensional-workflow-hero";
 import { automation } from "@/lib/content";
 
-// Riso inks as hex: node colours also feed SVG gradient stops, which can't read CSS vars.
-const COBALT = "#2833c9";
-const FLAME = "#ff5a1f";
-const INK = "#17161c";
+// Token colours as hex (coral accent, peach glow): node colours also feed SVG
+// gradient stops, which can't read CSS vars.
+const COBALT = "#e8664a";
+const FLAME = "#f2d4b0";
+const SHADOW = "#060204";
 
 function project(title: string) {
   const found = automation.find((p) => p.title === title);
@@ -144,7 +145,7 @@ const theme = {
   "--color-border": "var(--line-2)",
   "--color-primary": "var(--cobalt)",
   "--color-primary-foreground": "var(--paper)",
-  "--workflow-shadow-color": INK,
+  "--workflow-shadow-color": SHADOW,
   "--workflow-signal-color": "var(--flame)",
   "--font-hero-body": "var(--font-sans), system-ui, sans-serif",
   "--font-hero-display": "var(--font-display), Georgia, serif",

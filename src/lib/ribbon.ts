@@ -52,7 +52,7 @@ const HEAD_GAP_PX = 24;
 const BOTTOM_PX = 32;
 
 const VERT = `varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`;
-// Rounded-rect SDF; back faces flip uv.x so a poster never reads mirrored; a hairline ink edge.
+// Rounded-rect SDF; back faces flip uv.x so a poster never reads mirrored; a hairline cream edge.
 const FRAG = `uniform sampler2D map;uniform float aspect,radius;varying vec2 vUv;
 void main(){
   vec2 q=(abs(vUv-.5)-.5)*vec2(aspect,1.)+radius;
@@ -62,7 +62,7 @@ void main(){
   vec2 uv=vUv;if(!gl_FrontFacing)uv.x=1.-uv.x;
   vec3 c=texture2D(map,uv).rgb;
   float edge=smoothstep(-.006-px,-.006,d);
-  gl_FragColor=vec4(mix(c,vec3(.090,.086,.110),edge*.45),a);
+  gl_FragColor=vec4(mix(c,vec3(.969,.922,.867),edge*.3),a);
 }`;
 
 interface Rail {

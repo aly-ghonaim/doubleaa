@@ -136,8 +136,6 @@ export const capabilities: Capability[] = [
   },
 ];
 
-// Honest proof — the tools we actually build with, not clients we don't have.
-export const tools = ["Next.js", "React", "Shopify", "n8n", "OpenAI", "Tailwind"];
 
 export const studioQA: { q: string; a: string }[] = [
   {

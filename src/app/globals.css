@@ -1,25 +1,27 @@
 @import "tailwindcss";
 
-/* doubleaa — field-manual / riso-print editorial.
-   Cool bright paper, near-black ink, two risograph inks (cobalt + fluoro-orange),
-   a 1-bit halftone signature, print-letterpress serif display. Light is the one
-   committed identity — a page printed on paper, not a screen that dims. */
+/* doubleaa — "claret night": wine-black ground, warm cream type, a coral action
+   ink and a peach glow, matching the silk hero. Halftone signature and the
+   letterpress serif display carry over.
+   Token names are historical roles, kept so every component recolours at once:
+   --paper = page ground, --ink = text, --cobalt = action accent (coral),
+   --flame = emphasis glow (peach). */
 :root {
-  --paper: #f2f1ec;     /* cool bright paper — matches the direction contract */
-  --paper-2: #e9e8e1;   /* recessed ground */
-  --card: #fcfbf7;      /* raised near-white card */
-  --ink: #17161c;       /* near-black, a hair cool */
-  /* Secondary ink tinted from the foreground, carried dark enough to clear WCAG AA. */
+  --paper: #14070b;     /* wine-black ground */
+  --paper-2: #0f0508;   /* recessed ground */
+  --card: #1f0d13;      /* raised surface */
+  --ink: #f7ebdd;       /* warm cream text */
+  /* Secondary text mixed from the foreground, kept well above WCAG AA on the ground. */
   --muted: color-mix(in srgb, var(--ink) 68%, var(--paper));
   --faint: color-mix(in srgb, var(--ink) 62%, var(--paper));
   --line: color-mix(in srgb, var(--ink) 15%, transparent);
   --line-2: color-mix(in srgb, var(--ink) 30%, transparent);
 
-  --cobalt: #2833c9;
-  --cobalt-ink: #f3f2ea;
-  --cobalt-soft: color-mix(in srgb, var(--cobalt) 12%, var(--paper));
-  --flame: #ff5a1f;
-  --flame-ink: #1a1005;
+  --cobalt: #e8664a;    /* coral: actions (6:1 on the ground) */
+  --cobalt-ink: #14070b;
+  --cobalt-soft: color-mix(in srgb, var(--cobalt) 14%, var(--paper));
+  --flame: #f2d4b0;     /* peach: emphasis, status, pulse */
+  --flame-ink: #14070b;
   --flame-soft: color-mix(in srgb, var(--flame) 14%, var(--paper));
 
   /* honest status, kept inside the two-ink discipline */
@@ -36,7 +38,8 @@
   --t-fast: 130ms;
   --t-med: 260ms;
   --pulse-step: 110ms;
-  color-scheme: light;
+  --bar-h: 75px;       /* unscrolled top bar height; the hero fills the rest of the screen */
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -66,15 +69,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Ink grain — a dry offset-print tooth over the paper, not a glow. */
+/* Film grain over the dark ground (overlay: multiply would vanish on wine-black). */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.045;
-  mix-blend-mode: multiply;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -197,55 +200,11 @@ html.lenis, html.lenis body { height: auto; }
 .bar-cta:active { filter: brightness(0.94); }
 @media (max-width: 720px) { .bar-nav { display: none; } }
 
-/* ---------- Hero ---------- */
-.hero { position: relative; padding-block: clamp(64px, 11vw, 132px) clamp(40px, 7vw, 76px); }
+/* ---------- Hero (silk shader, src/components/ui/silk-mesh-shader-hero.tsx) ---------- */
+.hero-silk .smh-h { font-size: clamp(48px, 7vw, 120px); max-width: 13ch; }
+/* "See the work" is a link, not a film: drop the component's play glyph. */
+.hero-silk .smh-play { display: none; }
 
-/* Pre-fold hint of the signature "machine" — a ghosted schematic + halftone at the edge. */
-.hero-teaser {
-  position: absolute;
-  top: clamp(132px, 16vw, 210px);
-  right: max(24px, env(safe-area-inset-right, 0px));
-  width: 248px;
-  opacity: 0.6;
-  pointer-events: none;
-}
-.hero-teaser::before {
-  content: "";
-  position: absolute;
-  inset: -26px 0 auto auto;
-  width: 160px;
-  height: 128px;
-  color: var(--cobalt);
-  opacity: 0.6;
-  background-image: radial-gradient(currentColor 0.9px, transparent 1.2px);
-  background-size: 5px 5px;
-  -webkit-mask: radial-gradient(120% 120% at 100% 0%, #000, transparent 70%);
-  mask: radial-gradient(120% 120% at 100% 0%, #000, transparent 70%);
-}
-.hero-teaser-svg { position: relative; width: 100%; height: auto; display: block; }
-.ht-wire { fill: none; stroke: var(--cobalt); stroke-width: 1.5; opacity: 0.8; }
-.ht-box { fill: none; stroke: var(--cobalt); stroke-width: 1.6; }
-.ht-dot { fill: var(--flame); }
-@media (max-width: 1060px) { .hero-teaser { display: none; } }
-.hero-title {
-  font-family: var(--font-display), Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(2.6rem, 7vw, 5.4rem);
-  line-height: 1.02;
-  letter-spacing: -0.012em;
-  text-wrap: balance;
-  margin: 0;
-  max-width: 15ch;
-}
-.hero-title .mark { color: var(--flame); font-style: italic; }
-.hero-lede {
-  margin: 30px 0 0;
-  max-width: 62ch;
-  color: var(--muted);
-  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
-  line-height: 1.6;
-}
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 .btn {
   font-family: var(--font-sans);
   font-size: 0.96rem;
@@ -280,26 +239,6 @@ html.lenis, html.lenis body { height: auto; }
 }
 .btn:hover .i-arrow { transform: translateX(3px); }
 
-/* ---------- Hero entrance (pure CSS — plays before hydration) ---------- */
-.hero-line {
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
-}
-.hero-line > span {
-  display: block;
-  animation: mask-up 720ms var(--ease) both;
-  animation-delay: calc(100ms + var(--i) * 92ms);
-}
-.hero-follow {
-  animation: rise-in 560ms var(--ease) both;
-  animation-delay: calc(560ms + var(--i) * 80ms);
-}
-@keyframes mask-up { from { transform: translateY(110%); } to { transform: none; } }
-@keyframes rise-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-
 /* ---------- Clip-up text mask (MaskReveal, in-view) ---------- */
 .mask-group { display: block; }
 .mask {
@@ -311,31 +250,6 @@ html.lenis, html.lenis body { height: auto; }
 .mask-word .mask { display: inline-block; vertical-align: top; }
 .mask-inner { display: inline-block; will-change: transform; }
 .mask-line .mask-inner { display: block; }
-
-/* Honest proof strip */
-.proof {
-  margin-top: clamp(44px, 7vw, 80px);
-  padding-top: 22px;
-  border-top: 1px solid var(--line);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px 28px;
-}
-.proof-label {
-  font-family: var(--font-sans), system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--faint);
-}
-.proof-list { display: flex; flex-wrap: wrap; gap: 8px 22px; }
-.proof-item {
-  font-family: var(--font-display), Georgia, serif;
-  font-size: 1.1rem;
-  color: var(--muted);
-}
 
 /* ---------- Section heads (heading carries itself; no kicker) ---------- */
 .section { padding-block: clamp(56px, 9vw, 116px); }
@@ -665,10 +579,18 @@ html.lenis, html.lenis body { height: auto; }
 }
 .ribbon-pill span { color: color-mix(in srgb, var(--paper) 74%, transparent); }
 
+/* Automation walkthrough: keep its soft glow, drop the linear wash that left a
+   seam against the Work section (id selector outranks the component's own <style>). */
+#automations .af-experience .ambient {
+  background: radial-gradient(ellipse at 77% 61%, color-mix(in srgb, var(--cobalt) 12%, transparent), transparent 55%);
+}
+
 /* ---------- The machine (signature focal block) ---------- */
 .machine-band {
   background: var(--ink);
   color: var(--paper);
+  /* the band is a cream plate on the dark page: peach would vanish, so it gets a clay accent (4.8:1) */
+  --plate-accent: color-mix(in srgb, var(--cobalt) 70%, var(--paper));
   border-radius: var(--radius-lg);
   padding: clamp(32px, 5vw, 60px);
   position: relative;
@@ -702,7 +624,7 @@ html.lenis, html.lenis body { height: auto; }
   letter-spacing: -0.01em;
   margin: 0 0 16px;
 }
-.machine-copy h2 .mark { color: var(--flame); font-style: italic; }
+.machine-copy h2 .mark { color: var(--plate-accent); font-style: italic; }
 .machine-copy p { color: color-mix(in srgb, var(--paper) 72%, var(--ink)); max-width: 46ch; margin: 0 0 24px; font-size: 1.04rem; }
 .machine-tag {
   font-family: var(--font-mono), ui-monospace, monospace;
@@ -710,22 +632,22 @@ html.lenis, html.lenis body { height: auto; }
   letter-spacing: 0.08em;
   color: color-mix(in srgb, var(--paper) 60%, var(--ink));
 }
-.machine-tag b { color: var(--flame); font-weight: 500; }
+.machine-tag b { color: var(--plate-accent); font-weight: 500; }
 .machine-svg { width: 100%; height: auto; display: block; }
 .machine-node-box { fill: none; stroke: color-mix(in srgb, var(--paper) 55%, var(--ink)); stroke-width: 1.4; }
 .machine-node-fill { fill: color-mix(in srgb, var(--cobalt) 60%, var(--ink)); opacity: 0.35; }
 .machine-wire { fill: none; stroke: color-mix(in srgb, var(--paper) 40%, var(--ink)); stroke-width: 1.6; }
 .machine-label { fill: var(--paper); font-family: var(--font-mono), ui-monospace, monospace; font-size: 11px; letter-spacing: 0.04em; }
-.machine-dot { fill: var(--flame); }
+.machine-dot { fill: var(--plate-accent); }
 /* the pulse: a flame dash runs each wire in sequence */
 .machine-pulse {
   fill: none;
-  stroke: var(--flame);
+  stroke: var(--plate-accent);
   stroke-width: 2.4;
   stroke-linecap: round;
   stroke-dasharray: 26 2000;
   stroke-dashoffset: 0;
-  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--flame) 70%, transparent));
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--plate-accent) 70%, transparent));
   animation: wire-run 3.4s linear infinite;
 }
 @keyframes wire-run { to { stroke-dashoffset: -2026; } }
@@ -815,5 +737,4 @@ html.lenis, html.lenis body { height: auto; }
   .flow.is-running .flow-step:last-child .node { animation: none; }
   .machine-pulse { animation: none; stroke-dasharray: none; opacity: 0.8; }
   .mask-inner { will-change: auto; }
-  .hero-line > span, .hero-follow { animation: fade-in 200ms linear both; animation-delay: 0ms; }
 }
