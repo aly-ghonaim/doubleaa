@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "src/app/globals.css"
+        ],
+        "createdAt": "2026-11-09T20:46:07.827Z",
+        "reason": "user confirmed: picked the 'Electric coral + aqua' option whose spec was 'coral->aqua gradients on headline marks' (2026-11-09)"
+      }
+    ]
+  }
+}
