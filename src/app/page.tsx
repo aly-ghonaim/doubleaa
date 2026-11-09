@@ -7,7 +7,8 @@ import { MaskReveal } from "@/components/MaskReveal";
 import { toWords } from "@/lib/words";
 import { WorkShowcase } from "@/components/WorkShowcase";
 import { AutomationWalkthrough } from "@/components/AutomationWalkthrough";
-import { CopyEmail } from "@/components/CopyEmail";
+import { ShinyButton } from "@/components/ui/shiny-button";
+import { ArrowRight } from "lucide-react";
 import { capabilities, studioQA, EMAIL, GITHUB } from "@/lib/content";
 
 const STUDIO_WORDS = toWords([
@@ -92,15 +93,9 @@ export default function Home() {
                 itself? Send us the outcome you want and we&apos;ll scope it.
               </p>
               <div className="contact-row">
-                <CopyEmail />
-                <a
-                  className="btn btn-ghost"
-                  href={GITHUB}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  github.com/aly-ghonaim
-                </a>
+                <ShinyButton href="/contact">
+                  Contact us <ArrowRight size={26} strokeWidth={1.75} aria-hidden="true" />
+                </ShinyButton>
               </div>
             </div>
           </Reveal>

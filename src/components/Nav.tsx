@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const SCROLL_THRESHOLD = 40;
@@ -78,9 +79,9 @@ export function Nav() {
   return (
     <header className={`bar${scrolled ? " is-scrolled" : ""}${open ? " is-open" : ""}`}>
       <div className="bar-inner">
-        <a href="#top" className="brand">
+        <Link href="/" className="brand">
           double<i>aa</i>
-        </a>
+        </Link>
         <nav
           id="primary-nav"
           className="bar-nav"
@@ -89,14 +90,14 @@ export function Nav() {
             if ((e.target as HTMLElement).closest("a")) setOpen(false);
           }}
         >
-          <a href="#work">Work</a>
-          <a href="#studio">Studio</a>
-          <a href="#contact">Contact</a>
+          <Link href="/#work">Work</Link>
+          <Link href="/#studio">Studio</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
         <div className="bar-tools">
-          <a href="#contact" className="bar-cta" ref={ctaRef}>
+          <Link href="/contact" className="bar-cta" ref={ctaRef}>
             Start a project
-          </a>
+          </Link>
           {/* phones only: the links fold into a sheet under the bar */}
           <button
             type="button"

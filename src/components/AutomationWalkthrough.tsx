@@ -126,7 +126,7 @@ const content: ScrollExperienceContent = {
   finale: {
     eyebrow: "YOUR WORKFLOW NEXT",
     title: { lines: ["Got a job that should", "run on its own?"], emphasis: "run on its own?" },
-    cta: { label: "Start a project", href: "#contact" },
+    cta: { label: "Start a project", href: "/contact" },
   },
   navLabel: "Choose an automation",
   footer: {
