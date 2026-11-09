@@ -5,27 +5,15 @@ import { Hero } from "@/components/Hero";
 import { Machine } from "@/components/Machine";
 import { MaskReveal } from "@/components/MaskReveal";
 import { toWords } from "@/lib/words";
-import { WorkTile } from "@/components/WorkTile";
+import { WorkShowcase } from "@/components/WorkShowcase";
 import { CopyEmail } from "@/components/CopyEmail";
-import {
-  web,
-  automation,
-  capabilities,
-  studioQA,
-  EMAIL,
-  GITHUB,
-} from "@/lib/content";
-import type { TileSize } from "@/lib/content";
+import { capabilities, studioQA, EMAIL, GITHUB } from "@/lib/content";
 
 const STUDIO_WORDS = toWords([
   "Two builders who’d rather ship something small and",
   { mark: "working" },
   "than something big and theoretical.",
 ]);
-
-function cellClass(size?: TileSize): string {
-  return size ? `cell-${size}` : "";
-}
 
 export default function Home() {
   return (
@@ -62,48 +50,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Work */}
-        <section id="work" className="section wrap">
-          <h2 className="sec-title font-display">Selected work.</h2>
-          <p className="sec-sub">
-            Real projects with honest labels — built, live, designed, or in
-            progress. Nothing inflated.
-          </p>
-
-          <h3 className="group-label">Web</h3>
-          <div className="bento">
-            {web.map((project, i) => (
-              <Reveal
-                key={project.title}
-                variant="panel"
-                index={i}
-                className={cellClass(project.size)}
-              >
-                <WorkTile project={project} />
-              </Reveal>
-            ))}
-          </div>
-
-          <h3 className="group-label">Automation</h3>
-          <div className="bento">
-            {automation.map((project, i) => (
-              <Reveal
-                key={project.title}
-                variant="panel"
-                index={i}
-                className={cellClass(project.size)}
-              >
-                <WorkTile project={project} />
-              </Reveal>
-            ))}
-            <Reveal className="cell-wide" variant="panel" index={automation.length}>
-              <div className="slot">
-                <b className="font-display">More automations in progress</b>
-                Additional n8n workflows are being repurposed for the studio and
-                will be added here as they land.
-              </div>
-            </Reveal>
-          </div>
+        {/* Work — scroll ribbon on desktop, bento everywhere else */}
+        <section id="work">
+          <WorkShowcase />
         </section>
 
         {/* The machine — signature focal block */}

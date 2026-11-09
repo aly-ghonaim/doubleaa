@@ -118,9 +118,7 @@ html.lenis, html.lenis body { height: auto; }
   position: sticky;
   top: 0;
   z-index: 40;
-  background: color-mix(in srgb, var(--paper) 90%, transparent);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
   transition: box-shadow var(--t-med) var(--ease), border-color var(--t-med) var(--ease);
 }
@@ -604,6 +602,68 @@ html.lenis, html.lenis body { height: auto; }
 .slot b { display: block; font-family: var(--font-display), Georgia, serif; color: var(--ink); font-size: 1.25rem; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.005em; }
 @media (max-width: 860px) { .bento { grid-template-columns: repeat(2, 1fr); } .bento > * { grid-column: span 2 !important; } }
 @media (max-width: 540px) { .bento { grid-template-columns: 1fr; } .bento > * { grid-column: span 1 !important; } }
+
+/* ---------- Work ribbon (desktop): posters sweep along a 3D rail, then land ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.ribbon-track { position: relative; height: 600vh; }
+.ribbon-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+.ribbon-head {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: clamp(84px, 12vh, 120px);
+  pointer-events: none;
+}
+.ribbon-head .sec-sub { margin-bottom: 0; }
+.ribbon-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.ribbon-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.ribbon-label::after { transform: scaleX(var(--draw, 0)); transform-origin: left; }
+.ribbon-pill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: 300px;
+  padding: 11px 14px 12px;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.16s ease;
+}
+.ribbon-pill b {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.ribbon-pill span { color: color-mix(in srgb, var(--paper) 74%, transparent); }
 
 /* ---------- The machine (signature focal block) ---------- */
 .machine-band {

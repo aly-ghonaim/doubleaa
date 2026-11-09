@@ -84,15 +84,15 @@ export const automation: Project[] = [
   },
   {
     title: "Rebell Membership & Payments",
-    category: "System design",
-    role: "Registration, payment confirmation & renewals",
+    category: "n8n automation",
+    role: "Subscriptions, payments & 2FA confirmation",
     blurb:
-      "A system design where registration pages post to n8n webhooks, coaches confirm desk payments behind an access code, every payment is appended to a ledger sheet, contracts generate as PDFs over WhatsApp, and a 9 AM job reports renewals. Google Sheets as the database.",
+      "A gym automation system built in n8n. It tracks every member's subscription and the money coming in, and a payment is only recorded once it passes two-factor confirmation.",
     author: "Aly",
-    flow: ["Web form", "n8n webhook", "Sheets ledger", "WhatsApp PDF"],
-    stack: ["n8n", "Google Sheets"],
-    status: "Designed",
-    statusKind: "pending",
+    flow: ["Payment", "2FA confirm", "Recorded", "Subscription"],
+    stack: ["n8n"],
+    status: "Built",
+    statusKind: "ok",
   },
   {
     title: "Timetable Extractor",

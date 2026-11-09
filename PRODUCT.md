@@ -6,7 +6,7 @@ serious client trust two builders they've never met, and get them to start a pro
 
 ## Who runs it
 - **Aly Ghonaim** — front-end & security (Red Team Diploma). Owns Rebell, Dolly House KW,
-  the Rebell membership system design, the timetable extractor.
+  the Rebell membership & payments system, the timetable extractor.
 - **Abdullah Eissa** — full-stack & AI automation. Owns the Old Mill Cafe template, the
   Lead Capture & AI Dispatch and Autonomous Video Publisher n8n systems.
 
@@ -21,7 +21,7 @@ the machine that runs behind it."
 - Dolly House KW — custom bilingual Shopify storefront, security-audited (Aly, **Live client**)
 - Lead Capture & AI Dispatch — form→AI→sheet→email n8n (Abdullah, **Built**)
 - Autonomous Video Publisher — script→render→YouTube n8n (Abdullah, **Built**)
-- Rebell Membership & Payments — n8n system (Aly, **Designed**, not yet built)
+- Rebell Membership & Payments — n8n gym automation: tracks subscriptions and money, 2FA payment confirmation (Aly, **Built**)
 - Timetable Extractor — vision model in a Next.js app (Aly, **Working**)
 
 ## Hard constraints
