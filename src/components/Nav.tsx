@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useRef, useState } from "react";
 
 const SCROLL_THRESHOLD = 40;
@@ -66,16 +68,16 @@ export function Nav() {
   return (
     <header className={scrolled ? "bar is-scrolled" : "bar"}>
       <div className="bar-inner">
-        <a href="#top" className="brand">
+        <Link href="/#top" className="brand">
           double<i>aa</i>
-        </a>
+        </Link>
         <nav className="bar-nav" aria-label="Primary">
-          <a href="#work">Work</a>
-          <a href="#studio">Studio</a>
-          <a href="#contact">Contact</a>
+          <Link href="/#work">Work</Link>
+          <Link href="/#studio">Studio</Link>
+          <Link href="/#contact">Contact</Link>
         </nav>
         <div className="bar-tools">
-          <a href="#contact" className="bar-cta" ref={ctaRef}>
+          <a href="/start" className="bar-cta" ref={ctaRef}>
             Start a project
           </a>
         </div>

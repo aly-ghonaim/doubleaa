@@ -11,7 +11,7 @@ export function Hero() {
       eyebrow="Web development & AI automation"
       title={"We build the website,\nand the *machine*\nbehind it."}
       description="We're Aly and Abdullah, a two-person studio. Clean, fast interfaces and the n8n workflows behind them, so the thing you launch keeps running without you babysitting it."
-      primaryCta={{ label: "Start a project", href: "#contact" }}
+      primaryCta={{ label: "Start a project", href: "/start" }}
       secondaryCta={{ label: "See the work", href: "#work" }}
       caption={"Aly Ghonaim & Abdullah Eissa\nWeb · n8n · AI"}
       palette="tide"

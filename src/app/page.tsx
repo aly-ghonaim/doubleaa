@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { DotField } from "@/components/DotField";
@@ -92,6 +93,9 @@ export default function Home() {
                 itself — send us the outcome you want and we&apos;ll scope it.
               </p>
               <div className="contact-row">
+                <Link className="btn btn-primary" href="/start">
+                  Start a project
+                </Link>
                 <CopyEmail />
                 <a
                   className="btn btn-ghost"
