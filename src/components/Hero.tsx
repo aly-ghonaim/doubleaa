@@ -14,7 +14,7 @@ export function Hero() {
       primaryCta={{ label: "Start a project", href: "#contact" }}
       secondaryCta={{ label: "See the work", href: "#work" }}
       caption={"Aly Ghonaim & Abdullah Eissa\nWeb · n8n · AI"}
-      palette="claret"
+      palette="tide"
       height="calc(100svh - var(--bar-h))"
     />
   );

@@ -15,6 +15,8 @@ export type SilkPalette = {
 
 export const SILK_PALETTES = {
   claret: { colors: ["#16050a", "#5e1120", "#b5493c", "#f2d4b0"], text: "#f7ebdd" },
+  // claret ground with a deep-teal body and coral folds: the site's warm/cool counterpoint
+  tide: { colors: ["#14070b", "#164650", "#c65a44", "#f2d4b0"], text: "#f7ebdd" },
   dune: { colors: ["#20140c", "#7a4d31", "#c99a6c", "#fbefe1"], text: "#fff7ee" },
   moss: { colors: ["#06110d", "#1b4233", "#6a946a", "#e6efcf"], text: "#f2f6e6" },
 } satisfies Record<string, SilkPalette>

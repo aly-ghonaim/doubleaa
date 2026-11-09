@@ -2,7 +2,6 @@ import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Reveal } from "@/components/Reveal";
 import { Hero } from "@/components/Hero";
-import { Machine } from "@/components/Machine";
 import { MaskReveal } from "@/components/MaskReveal";
 import { toWords } from "@/lib/words";
 import { WorkShowcase } from "@/components/WorkShowcase";
@@ -25,7 +24,7 @@ export default function Home() {
         <Hero />
 
         {/* Capabilities */}
-        <section className="section wrap">
+        <section className="section wrap caps-section">
           <h2 className="sec-title font-display">
             Two halves of <span className="mark">one build.</span>
           </h2>
@@ -59,31 +58,6 @@ export default function Home() {
         {/* Automations — scroll walkthrough of the three n8n systems */}
         <section id="automations">
           <AutomationWalkthrough />
-        </section>
-
-        {/* The machine — signature focal block */}
-        <section id="machine" className="section wrap">
-          <Reveal variant="panel">
-            <div className="machine-band">
-              <div className="machine-grid">
-                <div className="machine-copy">
-                  <h2 className="font-display">
-                    The website, and the{" "}
-                    <span className="mark">machine</span> behind it.
-                  </h2>
-                  <p>
-                    Most studios hand you a site and walk away. We wire the
-                    workflow that runs after launch — intake, triage, and reply,
-                    moving on their own. Here&apos;s the shape of a real one.
-                  </p>
-                  <div className="machine-tag">
-                    live schematic · <b>Lead Capture &amp; AI Dispatch</b>
-                  </div>
-                </div>
-                <Machine />
-              </div>
-            </div>
-          </Reveal>
         </section>
 
         {/* Studio */}

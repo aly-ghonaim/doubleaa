@@ -539,7 +539,7 @@ export default function DimensionalWorkflowHero({ content, motion, accent, class
           // eslint-disable-next-line prefer-const -- assigned after the timeline that reads it is created
           let ownedTrigger: ScrollTrigger | undefined;
           const tl = gsap.timeline({
-            defaults: { ease: "power2.inOut" },
+            defaults: { ease: "sine.inOut" },
             onUpdate() {
               // Cache progress before resize changes the document's scroll range.
               // GSAP's revert pass must not replace it with a reset playhead.
@@ -586,13 +586,14 @@ export default function DimensionalWorkflowHero({ content, motion, accent, class
               tl.to(
                 panel,
                 {
-                  x: j === i ? 0 : j < i ? -580 : 530,
-                  y: j === i ? 0 : 40,
-                  z: j === i ? 50 : -500,
-                  rotationY: j === i ? -8 : j < i ? 35 : -35,
-                  rotationX: j === i ? 5 : 12,
+                  // softened from the original ±580px / ±35° swing: panels drift aside, not fling
+                  x: j === i ? 0 : j < i ? -320 : 300,
+                  y: j === i ? 0 : 24,
+                  z: j === i ? 30 : -260,
+                  rotationY: j === i ? -6 : j < i ? 16 : -16,
+                  rotationX: j === i ? 4 : 8,
                   rotationZ: 0,
-                  scale: () => j === i ? panelFit : panelFit * 0.74,
+                  scale: () => j === i ? panelFit : panelFit * 0.86,
                   autoAlpha: j === i ? 1 : 0,
                   zIndex: j === i ? 10 : 1,
                   duration: 1,
@@ -627,7 +628,7 @@ export default function DimensionalWorkflowHero({ content, motion, accent, class
                 const faces = panels[i].querySelectorAll(`.node[data-step="${j}"] .node-face`);
                 const glows = panels[i].querySelectorAll(`.node[data-step="${j}"] .node-glow`);
                 if (!faces.length) return;
-                tl.to(faces, { z: 45, y: -8, scale: 1.04, duration: 0.28 }, at)
+                tl.to(faces, { z: 28, y: -5, scale: 1.03, duration: 0.28 }, at)
                   .to(glows, { opacity: 1, duration: 0.28 }, at)
                   .to(faces, { z: 0, y: 0, scale: 1, duration: 0.25 }, at + 0.45)
                   .to(glows, { opacity: 0, duration: 0.25 }, at + 0.45);

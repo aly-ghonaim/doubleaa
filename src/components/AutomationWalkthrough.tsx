@@ -152,8 +152,8 @@ const theme = {
   "--font-hero-mono": "var(--font-mono), ui-monospace, monospace",
 } as CSSProperties;
 
-// ~1 viewport per chapter keeps the pinned section short.
-const motion = { viewportsPerChapter: 1, scrub: 0.65 };
+// ~1.2 viewports per chapter and a longer scrub let the panel swaps glide instead of snap.
+const motion = { viewportsPerChapter: 1.2, scrub: 1.2 };
 
 export function AutomationWalkthrough() {
   return (
