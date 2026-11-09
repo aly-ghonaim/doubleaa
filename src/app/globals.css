@@ -75,8 +75,8 @@ body {
 
 /* Fixed ambient light: coral from the top-left, teal from the bottom-right, so the
    ground has warm and cool depth instead of one flat wine tone. z -1 keeps it behind content. */
-@property --warm { syntax: "<number>"; inherits: false; initial-value: 18; }
-@property --cool { syntax: "<number>"; inherits: false; initial-value: 26; }
+@property --warm { syntax: "<number>"; inherits: false; initial-value: 34; }
+@property --cool { syntax: "<number>"; inherits: false; initial-value: 44; }
 @property --warm-y { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
 @property --cool-y { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
 @property --cool-x { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
@@ -87,16 +87,16 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(60vw 55vh at 8% var(--warm-y), color-mix(in srgb, var(--cobalt) calc(var(--warm) * 1%), transparent), transparent 70%),
-    radial-gradient(70vw 65vh at var(--cool-x) var(--cool-y), color-mix(in srgb, var(--teal-deep) calc(var(--cool) * 1%), transparent), transparent 70%),
-    radial-gradient(50vw 40vh at 85% 15%, color-mix(in srgb, var(--plum) 70%, transparent), transparent 70%);
+    radial-gradient(75vw 70vh at 8% var(--warm-y), color-mix(in srgb, var(--cobalt) calc(var(--warm) * 1%), transparent), transparent 70%),
+    radial-gradient(80vw 75vh at var(--cool-x) var(--cool-y), color-mix(in srgb, var(--teal-deep) calc(var(--cool) * 1%), transparent), transparent 70%),
+    radial-gradient(55vw 45vh at 85% 15%, color-mix(in srgb, #5a1f5c 55%, transparent), transparent 70%);
 }
 /* The light follows the story: warm coral over the websites, the teal takes over as
    the automation walkthrough passes, then both settle into a mix by the contact. */
 @keyframes story-light {
-  0% { --warm: 18; --warm-y: 0%; --cool: 26; --cool-x: 100%; --cool-y: 100%; }
-  30%, 70% { --warm: 5; --warm-y: 45%; --cool: 62; --cool-x: 12%; --cool-y: 70%; }
-  100% { --warm: 14; --warm-y: 25%; --cool: 32; --cool-x: 100%; --cool-y: 95%; }
+  0% { --warm: 34; --warm-y: 0%; --cool: 44; --cool-x: 100%; --cool-y: 100%; }
+  30%, 70% { --warm: 12; --warm-y: 45%; --cool: 72; --cool-x: 12%; --cool-y: 70%; }
+  100% { --warm: 30; --warm-y: 25%; --cool: 50; --cool-x: 100%; --cool-y: 95%; }
 }
 @supports (animation-timeline: view()) {
   body { timeline-scope: --automations; }
@@ -108,17 +108,14 @@ body::before {
   }
 }
 
-/* Halftone field: a faint fixed dot grid (the studio's print signature) that the
-   DotField canvas swells around the pointer. Tile size must match GAP in DotField.tsx. */
-.dot-field {
+/* Hex lattice background (HexField.tsx): fixed behind content, above the body glows. */
+.hex-field {
   position: fixed;
   inset: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-image: radial-gradient(color-mix(in srgb, var(--ink) 10%, transparent) 0.8px, transparent 1.3px);
-  background-size: 22px 22px;
 }
 
 /* Film grain over the dark ground (overlay: multiply would vanish on wine-black). */

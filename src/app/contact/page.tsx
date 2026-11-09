@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
-import { DotField } from "@/components/DotField";
+import { HexField } from "@/components/HexField";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <DotField />
+      <HexField />
       <Nav />
       <main id="top" className="section wrap contact-page">
         <h1 className="sec-title font-display">
