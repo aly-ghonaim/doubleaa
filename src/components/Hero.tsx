@@ -9,7 +9,7 @@ export function Hero() {
     <SilkMeshShaderHero
       className="hero-silk"
       eyebrow="Web development & AI automation"
-      title={"We build the website —\nand the *machine*\nbehind it."}
+      title={"We build the website,\nand the *machine*\nbehind it."}
       description="We're Aly and Abdullah, a two-person studio. Clean, fast interfaces and the n8n workflows behind them, so the thing you launch keeps running without you babysitting it."
       primaryCta={{ label: "Start a project", href: "#contact" }}
       secondaryCta={{ label: "See the work", href: "#work" }}

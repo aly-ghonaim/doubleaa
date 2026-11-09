@@ -253,7 +253,9 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 720px) { .bar-nav { display: none; } }
 
 /* ---------- Hero (silk shader, src/components/ui/silk-mesh-shader-hero.tsx) ---------- */
-.hero-silk .smh-h { font-size: clamp(48px, 7vw, 120px); max-width: 13ch; }
+/* Sized by width AND height: on wide-but-short screens a width-only size overflowed the
+   top under the bar. No max-width, so the title's own line breaks give three lines. */
+.hero-silk .smh-h { font-size: clamp(42px, min(6.4vw, 11svh), 112px); line-height: 0.96; max-width: none; }
 /* "See the work" is a link, not a film: drop the component's play glyph. */
 .hero-silk .smh-play { display: none; }
 
@@ -498,7 +500,7 @@ html.lenis, html.lenis body { height: auto; }
 .tile-cat {
   font-family: var(--font-sans), system-ui, sans-serif;
   font-weight: 600;
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--cobalt);
@@ -530,7 +532,7 @@ html.lenis, html.lenis body { height: auto; }
 .flow-step { display: inline-flex; align-items: center; gap: 7px; }
 .node {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   color: var(--ink);
   background: var(--cobalt-soft);
   border: 1px solid color-mix(in srgb, var(--cobalt) 32%, var(--line));
@@ -590,7 +592,7 @@ html.lenis, html.lenis body { height: auto; }
   100% { transform: scale(1); }
 }
 
-.tile-meta { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-top: 20px; font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.66rem; }
+.tile-meta { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-top: 20px; font-family: var(--font-mono), ui-monospace, monospace; font-size: 0.75rem; }
 .by { letter-spacing: 0.03em; color: var(--ink); border: 1px solid var(--line-2); border-radius: 999px; padding: 4px 11px; }
 .by b { color: var(--cobalt); font-weight: 600; }
 .stack { color: var(--faint); }
