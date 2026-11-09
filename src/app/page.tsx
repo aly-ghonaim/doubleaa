@@ -6,6 +6,7 @@ import { Machine } from "@/components/Machine";
 import { MaskReveal } from "@/components/MaskReveal";
 import { toWords } from "@/lib/words";
 import { WorkShowcase } from "@/components/WorkShowcase";
+import { AutomationWalkthrough } from "@/components/AutomationWalkthrough";
 import { CopyEmail } from "@/components/CopyEmail";
 import { capabilities, studioQA, EMAIL, GITHUB } from "@/lib/content";
 
@@ -53,6 +54,11 @@ export default function Home() {
         {/* Work — scroll ribbon on desktop, bento everywhere else */}
         <section id="work">
           <WorkShowcase />
+        </section>
+
+        {/* Automations — scroll walkthrough of the three n8n systems */}
+        <section id="automations">
+          <AutomationWalkthrough />
         </section>
 
         {/* The machine — signature focal block */}
