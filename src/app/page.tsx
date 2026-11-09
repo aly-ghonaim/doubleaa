@@ -1,5 +1,6 @@
 import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { DotField } from "@/components/DotField";
 import { Reveal } from "@/components/Reveal";
 import { Hero } from "@/components/Hero";
 import { MaskReveal } from "@/components/MaskReveal";
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     <>
       <SmoothScroll />
+      <DotField />
       <Nav />
       <main id="top">
         <Hero />
