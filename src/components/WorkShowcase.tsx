@@ -12,7 +12,7 @@ const GROUPS = [
 ];
 const TITLE = "Selected work.";
 const SUB =
-  "Real projects with honest labels — built, live, designed, or in progress. Nothing inflated.";
+  "Real projects with honest labels: built, live, designed, or in progress. Nothing inflated.";
 
 // The ribbon needs room, motion and WebGL2; everything else gets the static bento.
 const QUERY = "(min-width: 900px) and (prefers-reduced-motion: no-preference)";

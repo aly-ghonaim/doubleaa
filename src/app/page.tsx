@@ -89,7 +89,7 @@ export default function Home() {
               </h2>
               <p className="contact-sub">
                 A site that needs building, or a repetitive job that should run
-                itself — send us the outcome you want and we&apos;ll scope it.
+                itself? Send us the outcome you want and we&apos;ll scope it.
               </p>
               <div className="contact-row">
                 <CopyEmail />
@@ -114,11 +114,11 @@ export default function Home() {
               double<i>aa</i>
             </div>
             <p className="footer-note">
-              Web development &amp; AI automation — Aly Ghonaim &amp; Abdullah
+              Web development &amp; AI automation by Aly Ghonaim &amp; Abdullah
               Eissa.
             </p>
             <p className="footer-locale">
-              <b>Cairo</b> · GMT+2 — Aly. Abdullah: contact detail pending.
+              Aly in <b>Cairo</b> · GMT+2
             </p>
           </div>
           <div className="footer-contact">

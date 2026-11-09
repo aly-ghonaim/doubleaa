@@ -250,7 +250,52 @@ html.lenis, html.lenis body { height: auto; }
 }
 .bar-cta:hover { filter: brightness(1.08); transition: transform 150ms var(--ease), filter var(--t-fast) var(--ease); }
 .bar-cta:active { filter: brightness(0.94); }
-@media (max-width: 720px) { .bar-nav { display: none; } }
+/* Phones: the links fold into a sheet under the bar, opened by .bar-menu. */
+.bar-menu { display: none; }
+@media (max-width: 720px) {
+  .bar-menu {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -8px;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .bar-cta { padding: 10px 14px; }
+  .bar-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 6px max(24px, env(safe-area-inset-left, 0px)) 14px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line-2);
+    box-shadow: 0 24px 40px -24px #000;
+    font-size: 1.15rem;
+    color: var(--ink);
+    /* closed: tucked up and hidden; transitions in when .is-open */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease), visibility 0s linear var(--t-med);
+  }
+  .bar.is-open .bar-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+  }
+  .bar-nav a { display: flex; align-items: center; min-height: 52px; border-bottom: 1px solid var(--line); padding: 0; }
+  .bar-nav a:last-child { border-bottom: 0; }
+  .bar-nav a::after { display: none; }
+}
 
 /* ---------- Hero (silk shader, src/components/ui/silk-mesh-shader-hero.tsx) ---------- */
 /* Sized by width AND height: on wide-but-short screens a width-only size overflowed the
@@ -496,7 +541,9 @@ html.lenis, html.lenis body { height: auto; }
 .tile:hover::after { opacity: 0.24; }
 .tile > * { position: relative; z-index: 1; }
 .tile.featured { min-height: 290px; }
-.tile-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.tile-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px 12px; }
+/* chip stays one piece: it drops under the category instead of breaking or overflowing */
+.tile-head .status { font-size: 0.72rem; font-weight: 600; }
 .tile-cat {
   font-family: var(--font-sans), system-ui, sans-serif;
   font-weight: 600;
@@ -596,7 +643,7 @@ html.lenis, html.lenis body { height: auto; }
 .by { letter-spacing: 0.03em; color: var(--ink); border: 1px solid var(--line-2); border-radius: 999px; padding: 4px 11px; }
 .by b { color: var(--cobalt); font-weight: 600; }
 .stack { color: var(--faint); }
-.status { letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; border: 1px solid var(--line-2); color: var(--muted); }
+.status { white-space: nowrap; flex: none; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; border: 1px solid var(--line-2); color: var(--muted); }
 .status-ok { color: var(--cobalt); border-color: color-mix(in srgb, var(--cobalt) 45%, transparent); background: var(--cobalt-soft); }
 .status-pending { color: var(--flame); border-color: color-mix(in srgb, var(--flame) 50%, transparent); background: var(--flame-soft); }
 
@@ -613,7 +660,23 @@ html.lenis, html.lenis body { height: auto; }
 }
 .slot b { display: block; font-family: var(--font-display), Georgia, serif; color: var(--ink); font-size: 1.25rem; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.005em; }
 @media (max-width: 860px) { .bento { grid-template-columns: repeat(2, 1fr); } .bento > * { grid-column: span 2 !important; } }
-@media (max-width: 540px) { .bento { grid-template-columns: 1fr; } .bento > * { grid-column: span 1 !important; } }
+/* Phones: each group becomes a swipeable row (the next card peeks in) instead of a
+   3,700px stack. Breaks out of .wrap's gutter so cards slide edge to edge. */
+@media (max-width: 720px) {
+  .bento {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    margin-inline: -24px;
+    padding: 4px 24px 8px;
+    scroll-padding-inline: 24px;
+    scrollbar-width: none;
+  }
+  .bento::-webkit-scrollbar { display: none; }
+  .bento > * { flex: 0 0 min(84%, 340px); scroll-snap-align: start; }
+}
 
 /* ---------- Work ribbon (desktop): posters sweep along a 3D rail, then land ---------- */
 .sr-only {
