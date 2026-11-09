@@ -73,9 +73,7 @@ export function FlowRun({ flow }: FlowRunProps) {
               className="arr"
               aria-hidden="true"
               style={{ "--beat": i * 2 + 1 } as CSSProperties}
-            >
-              →
-            </span>
+            />
           )}
         </motion.span>
       ))}

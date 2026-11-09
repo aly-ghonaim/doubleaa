@@ -2,6 +2,7 @@ import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { Reveal } from "@/components/Reveal";
 import { Hero } from "@/components/Hero";
+import { Machine } from "@/components/Machine";
 import { MaskReveal } from "@/components/MaskReveal";
 import { toWords } from "@/lib/words";
 import { WorkTile } from "@/components/WorkTile";
@@ -105,6 +106,31 @@ export default function Home() {
           </div>
         </section>
 
+        {/* The machine — signature focal block */}
+        <section id="machine" className="section wrap">
+          <Reveal variant="panel">
+            <div className="machine-band">
+              <div className="machine-grid">
+                <div className="machine-copy">
+                  <h2 className="font-display">
+                    The website, and the{" "}
+                    <span className="mark">machine</span> behind it.
+                  </h2>
+                  <p>
+                    Most studios hand you a site and walk away. We wire the
+                    workflow that runs after launch — intake, triage, and reply,
+                    moving on their own. Here&apos;s the shape of a real one.
+                  </p>
+                  <div className="machine-tag">
+                    live schematic · <b>Lead Capture &amp; AI Dispatch</b>
+                  </div>
+                </div>
+                <Machine />
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
         {/* Studio */}
         <section id="studio" className="section wrap">
           <p className="studio-lede font-display">
@@ -159,6 +185,9 @@ export default function Home() {
             <p className="footer-note">
               Web development &amp; AI automation — Aly Ghonaim &amp; Abdullah
               Eissa.
+            </p>
+            <p className="footer-locale">
+              <b>Cairo</b> · GMT+2 — Aly. Abdullah: contact detail pending.
             </p>
           </div>
           <div className="footer-contact">

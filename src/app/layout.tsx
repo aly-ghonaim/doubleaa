@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Libre_Caslon_Display, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+// Print-letterpress serif for display — set large, roman-led (emphasis comes from the riso inks,
+// not italic). Deliberately not a Didone and not the Fraunces/Playfair default.
+const caslon = Libre_Caslon_Display({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["400"],
   display: "swap",
 });
 
@@ -39,22 +41,15 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
-        <script
-          // Dark is the committed identity; apply saved theme before paint to avoid a flash.
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{var t=localStorage.getItem('daa-theme');document.documentElement.setAttribute('data-theme',t==='light'?'light':'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}",
-          }}
-        />
         <noscript>
           {/* Without JS, entrance animations never run — show everything at rest. */}
           <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
       <body
-        className={`${bricolage.variable} ${hanken.variable} ${jetbrains.variable}`}
+        className={`${caslon.variable} ${hanken.variable} ${jetbrains.variable}`}
       >
         {children}
       </body>

@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T00:00:00Z",
+  "title": "Design System: doubleaa",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Cool Paper", "canonical": "#f2f1ec", "tonalRamp": ["oklch(15% 0.004 100)", "oklch(27% 0.005 100)", "oklch(39% 0.006 100)", "oklch(51% 0.007 100)", "oklch(63% 0.007 100)", "oklch(75% 0.007 100)", "oklch(86% 0.007 100)", "oklch(95.5% 0.007 100)"] },
+      "paper-recessed": { "role": "neutral", "displayName": "Recessed Paper", "canonical": "#e9e8e1" },
+      "card": { "role": "neutral", "displayName": "Card White", "canonical": "#fcfbf7" },
+      "ink": { "role": "neutral", "displayName": "Cool Ink", "canonical": "#17161c", "tonalRamp": ["oklch(15% 0.01 290)", "oklch(20% 0.012 290)", "oklch(32% 0.01 290)", "oklch(45% 0.008 290)", "oklch(58% 0.006 290)", "oklch(71% 0.005 290)", "oklch(84% 0.004 290)", "oklch(95% 0.003 290)"] },
+      "ink-muted": { "role": "neutral", "displayName": "Muted Ink", "canonical": "color-mix(in srgb, var(--ink) 68%, var(--paper))" },
+      "ink-faint": { "role": "neutral", "displayName": "Faint Ink", "canonical": "color-mix(in srgb, var(--ink) 62%, var(--paper))" },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "color-mix(in srgb, var(--ink) 15%, transparent)" },
+      "hairline-strong": { "role": "neutral", "displayName": "Strong Hairline", "canonical": "color-mix(in srgb, var(--ink) 30%, transparent)" },
+      "cobalt": { "role": "primary", "displayName": "Riso Cobalt", "canonical": "#2833c9", "tonalRamp": ["oklch(15% 0.08 268)", "oklch(26% 0.14 268)", "oklch(36% 0.19 268)", "oklch(43% 0.22 268)", "oklch(55% 0.18 268)", "oklch(68% 0.12 268)", "oklch(82% 0.06 268)", "oklch(95% 0.02 268)"] },
+      "cobalt-ink": { "role": "primary", "displayName": "Cobalt Ink", "canonical": "#f3f2ea" },
+      "cobalt-soft": { "role": "primary", "displayName": "Cobalt Soft", "canonical": "color-mix(in srgb, var(--cobalt) 12%, var(--paper))" },
+      "flame": { "role": "secondary", "displayName": "Fluoro Flame", "canonical": "#ff5a1f", "tonalRamp": ["oklch(15% 0.05 38)", "oklch(27% 0.09 38)", "oklch(39% 0.14 38)", "oklch(51% 0.18 38)", "oklch(67% 0.22 38)", "oklch(76% 0.15 38)", "oklch(86% 0.08 38)", "oklch(95% 0.025 38)"] },
+      "flame-ink": { "role": "secondary", "displayName": "Flame Ink", "canonical": "#1a1005" },
+      "flame-soft": { "role": "secondary", "displayName": "Flame Soft", "canonical": "color-mix(in srgb, var(--flame) 14%, var(--paper))" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only; roman, one flame italic word, lines clip upward on entrance." },
+      "headline": { "displayName": "Headline", "purpose": "Section, machine, studio and contact titles." },
+      "title": { "displayName": "Title", "purpose": "Work tile titles and capability panel heads." },
+      "body": { "displayName": "Body", "purpose": "Prose and ledes; muted ink for secondary copy." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked grotesk naming rows, groups, categories and questions; never a kicker above a heading." },
+      "data": { "displayName": "Data", "purpose": "Mono for real system data: pipeline nodes, statuses, stacks, roles, contact strings." }
+    },
+    "shadows": [
+      { "name": "bar-scrolled", "value": "0 10px 28px -20px rgba(23, 22, 28, 0.5)", "purpose": "Sticky top bar once scrolled." },
+      { "name": "tile-lift", "value": "0 18px 34px -26px rgba(23, 22, 28, 0.55)", "purpose": "Hovered work tile, with a 4px lift." },
+      { "name": "misregistration", "value": "-1px -1px 0 color-mix(in srgb, var(--cobalt) 55%, transparent)", "purpose": "text-shadow on the wordmark's flame italic only." }
+    ],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The single easing for all state transitions and entrances." },
+      { "name": "t-fast", "value": "130ms", "purpose": "Color, filter and small transform feedback." },
+      { "name": "t-med", "value": "260ms", "purpose": "Underlines, bar tightening, halftone and marker changes." },
+      { "name": "pulse-step", "value": "110ms", "purpose": "Beat interval of the flow run pulse." },
+      { "name": "hero-mask-up", "value": "720ms, 92ms stagger per line", "purpose": "Hero headline lines rise out of clipped bands, CSS-only before hydration." },
+      { "name": "wire-run", "value": "3.4s linear infinite", "purpose": "Flame dash running the machine wires; frozen under reduced motion." }
+    ],
+    "breakpoints": [
+      { "name": "bento-1col", "value": "540px" },
+      { "name": "nav-collapse", "value": "720px" },
+      { "name": "qa-machine-1col", "value": "760px" },
+      { "name": "caps-1col", "value": "820px" },
+      { "name": "bento-2col", "value": "860px" },
+      { "name": "hero-teaser", "value": "1060px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Cobalt action button with a drawn arrow; the only filled button.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">Start a project <i class=\"ds-arrow\" aria-hidden=\"true\"></i></a>",
+      "css": ".ds-btn { font-family: var(--font-sans), 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.96rem; font-weight: 600; border-radius: 4px; padding: 13px 22px; border: 1.5px solid transparent; text-decoration: none; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; transition: transform 130ms cubic-bezier(0.16,1,0.3,1), filter 130ms cubic-bezier(0.16,1,0.3,1), background 130ms cubic-bezier(0.16,1,0.3,1), color 130ms cubic-bezier(0.16,1,0.3,1), border-color 130ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary { background: #2833c9; color: #f3f2ea; } .ds-btn-primary:hover { filter: brightness(1.08); transform: translateY(-1px); } .ds-btn-primary:active { filter: brightness(0.94); transform: translateY(1px); transition-duration: 80ms; } .ds-btn:focus-visible { outline: 2px solid #2833c9; outline-offset: 3px; } .ds-arrow { width: 0.9em; height: 0.9em; background: currentColor; -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E\") center / contain no-repeat; mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E\") center / contain no-repeat; transition: transform 130ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover .ds-arrow { transform: translateX(3px); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Hairline-bordered secondary action that inverts to ink on hover.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">See the work</a>",
+      "css": ".ds-btn-ghost { font-family: var(--font-sans), 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.96rem; font-weight: 600; border-radius: 4px; padding: 13px 22px; background: transparent; color: #17161c; border: 1.5px solid rgba(23,22,28,0.30); text-decoration: none; display: inline-flex; transition: transform 130ms cubic-bezier(0.16,1,0.3,1), background 130ms cubic-bezier(0.16,1,0.3,1), color 130ms cubic-bezier(0.16,1,0.3,1), border-color 130ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover { transform: translateY(-1px); background: #17161c; color: #f2f1ec; border-color: #17161c; } .ds-btn-ghost:active { transform: translateY(1px); transition-duration: 80ms; } .ds-btn-ghost:focus-visible { outline: 2px solid #2833c9; outline-offset: 3px; }"
+    },
+    {
+      "name": "Top Bar",
+      "kind": "nav",
+      "refersTo": "nav-cta",
+      "description": "Boxed sticky bar: Caslon wordmark with misregistered flame italic, muted links with flame underline, cobalt CTA.",
+      "html": "<header class=\"ds-bar\"><a class=\"ds-brand\" href=\"#\">double<i>aa</i></a><nav class=\"ds-bar-nav\"><a href=\"#\">Work</a><a href=\"#\">Studio</a><a href=\"#\">Contact</a></nav><a class=\"ds-bar-cta\" href=\"#\">Start a project</a></header>",
+      "css": ".ds-bar { display: flex; align-items: center; gap: 16px; padding: 15px 24px; background: rgba(242,241,236,0.9); backdrop-filter: blur(6px); border-bottom: 1px solid rgba(23,22,28,0.15); } .ds-brand { font-family: var(--font-display), 'Libre Caslon Display', Georgia, serif; font-size: 1.4rem; letter-spacing: -0.01em; color: #17161c; text-decoration: none; } .ds-brand i { font-style: italic; color: #ff5a1f; text-shadow: -1px -1px 0 rgba(40,51,201,0.55); } .ds-bar-nav { display: flex; gap: 24px; margin-left: auto; font-family: var(--font-sans), 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.82rem; letter-spacing: 0.02em; } .ds-bar-nav a { color: #5d5c5f; text-decoration: none; position: relative; padding-bottom: 2px; } .ds-bar-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1.5px; background: #ff5a1f; transform: scaleX(0); transform-origin: left; transition: transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-bar-nav a:hover { color: #17161c; } .ds-bar-nav a:hover::after { transform: scaleX(1); } .ds-bar-nav a:focus-visible, .ds-bar-cta:focus-visible { outline: 2px solid #2833c9; outline-offset: 3px; } .ds-bar-cta { font-family: var(--font-sans), 'Hanken Grotesk', system-ui, sans-serif; font-size: 0.85rem; font-weight: 600; color: #f3f2ea; background: #2833c9; border-radius: 4px; padding: 11px 18px; text-decoration: none; transition: filter 130ms cubic-bezier(0.16,1,0.3,1); } .ds-bar-cta:hover { filter: brightness(1.08); }"
+    },
+    {
+      "name": "Status Chips",
+      "kind": "chip",
+      "refersTo": "status-ok",
+      "description": "Honest mono status tags: cobalt for done, flame for pending, hairline for neutral.",
+      "html": "<span class=\"ds-status ds-status-ok\">Built</span> <span class=\"ds-status ds-status-pending\">Designed</span> <span class=\"ds-status\">Template</span>",
+      "css": ".ds-status { font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; border: 1px solid rgba(23,22,28,0.30); color: #5d5c5f; display: inline-block; } .ds-status-ok { color: #2833c9; border-color: rgba(40,51,201,0.45); background: #dadae8; } .ds-status-pending { color: #ff5a1f; border-color: rgba(255,90,31,0.5); background: #f4dccf; }"
+    },
+    {
+      "name": "Work Tile",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Paper card with a halftone shoulder; on hover it lifts, prints a flame top edge and turns its title cobalt.",
+      "html": "<article class=\"ds-tile\"><div class=\"ds-tile-head\"><span class=\"ds-tile-cat\">Automation</span><span class=\"ds-tile-status\">Built</span></div><h4 class=\"ds-tile-title\">Lead Capture &amp; AI Dispatch</h4><p class=\"ds-tile-blurb\">Form to AI to sheet to email, running unattended.</p></article>",
+      "css": ".ds-tile { position: relative; overflow: hidden; background: #fcfbf7; border: 1px solid rgba(23,22,28,0.30); border-radius: 8px; padding: 24px 26px; min-height: 220px; max-width: 420px; transition: transform 180ms cubic-bezier(0.16,1,0.3,1), border-color 180ms cubic-bezier(0.16,1,0.3,1), box-shadow 180ms cubic-bezier(0.16,1,0.3,1); } .ds-tile::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 2.5px; background: #ff5a1f; transform: scaleX(0); transform-origin: left; transition: transform 180ms cubic-bezier(0.16,1,0.3,1); } .ds-tile::after { content: ''; position: absolute; right: 0; bottom: 0; width: 150px; height: 150px; color: #2833c9; opacity: 0.14; background-image: radial-gradient(currentColor 0.9px, transparent 1.2px); background-size: 5px 5px; -webkit-mask: radial-gradient(130% 130% at 100% 100%, #000, transparent 66%); mask: radial-gradient(130% 130% at 100% 100%, #000, transparent 66%); pointer-events: none; transition: opacity 260ms cubic-bezier(0.16,1,0.3,1); } .ds-tile:hover { transform: translateY(-4px); border-color: rgba(40,51,201,0.5); box-shadow: 0 18px 34px -26px rgba(23,22,28,0.55); transition-duration: 320ms; } .ds-tile:hover::before { transform: scaleX(1); transition-duration: 420ms; } .ds-tile:hover::after { opacity: 0.24; } .ds-tile > * { position: relative; z-index: 1; } .ds-tile-head { display: flex; justify-content: space-between; gap: 12px; } .ds-tile-cat { font-family: var(--font-sans), 'Hanken Grotesk', system-ui, sans-serif; font-weight: 600; font-size: 0.66rem; letter-spacing: 0.13em; text-transform: uppercase; color: #2833c9; } .ds-tile-status { font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; color: #2833c9; background: #dadae8; border: 1px solid rgba(40,51,201,0.45); } .ds-tile-title { font-family: var(--font-display), 'Libre Caslon Display', Georgia, serif; font-weight: 400; font-size: 1.7rem; line-height: 1.06; letter-spacing: -0.005em; margin: 8px 0 0; color: #17161c; transition: color 130ms cubic-bezier(0.16,1,0.3,1); } .ds-tile:hover .ds-tile-title { color: #2833c9; } .ds-tile-blurb { font-family: var(--font-sans), 'Hanken Grotesk', system-ui, sans-serif; color: #5d5c5f; font-size: 0.94rem; margin: 14px 0 0; }"
+    },
+    {
+      "name": "Flow Run",
+      "kind": "custom",
+      "refersTo": "flow-node",
+      "description": "Pipeline of mono nodes and drawn cobalt arrows; a flame beat runs through on hover here (in-view in the build).",
+      "html": "<div class=\"ds-flow\"><span class=\"ds-node\" style=\"--b:0\">form</span><i class=\"ds-arr\" style=\"--b:1\"></i><span class=\"ds-node\" style=\"--b:2\">openai</span><i class=\"ds-arr\" style=\"--b:3\"></i><span class=\"ds-node\" style=\"--b:4\">sheet</span></div>",
+      "css": ".ds-flow { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; } .ds-node { font-family: var(--font-mono), 'JetBrains Mono', ui-monospace, monospace; font-size: 0.66rem; color: #17161c; background: #dadae8; border: 1px solid rgba(40,51,201,0.32); border-radius: 3px; padding: 4px 9px; position: relative; overflow: hidden; } .ds-node::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,90,31,0.6), transparent); opacity: 0; transform: translateX(-100%); } .ds-arr { display: inline-block; width: 0.95rem; height: 0.95rem; color: #2833c9; opacity: 0.65; background: currentColor; -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E\") center / contain no-repeat; mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E\") center / contain no-repeat; } .ds-flow:hover .ds-node::after { animation: ds-node-pulse 520ms cubic-bezier(0.16,1,0.3,1) both; animation-delay: calc(var(--b) * 110ms); } .ds-flow:hover .ds-arr { animation: ds-arr-pulse 360ms cubic-bezier(0.16,1,0.3,1) both; animation-delay: calc(var(--b) * 110ms); } @keyframes ds-node-pulse { 0% { opacity: 0; transform: translateX(-100%); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateX(100%); } } @keyframes ds-arr-pulse { 0% { opacity: 0.6; transform: none; } 45% { opacity: 1; transform: translateX(3px) scale(1.3); color: #ff5a1f; } 100% { opacity: 0.6; transform: none; } } @media (prefers-reduced-motion: reduce) { .ds-flow:hover .ds-node::after, .ds-flow:hover .ds-arr { animation: none; } }"
+    },
+    {
+      "name": "Machine Plate",
+      "kind": "custom",
+      "refersTo": "machine-plate",
+      "description": "The single ink-ground band: cobalt halftone wash, Caslon headline with one flame word, a running flame wire.",
+      "html": "<section class=\"ds-plate\"><h2 class=\"ds-plate-title\">The <span>machine</span> behind it</h2><svg class=\"ds-plate-svg\" viewBox=\"0 0 240 60\"><path class=\"ds-wire\" d=\"M10 30 H230\"/><path class=\"ds-pulse\" d=\"M10 30 H230\"/></svg></section>",
+      "css": ".ds-plate { position: relative; overflow: hidden; background: #17161c; color: #f2f1ec; border-radius: 8px; padding: 40px; } .ds-plate::before { content: ''; position: absolute; inset: 0; color: #2833c9; opacity: 0.22; background-image: radial-gradient(currentColor 0.9px, transparent 1.3px); background-size: 6px 6px; -webkit-mask: radial-gradient(130% 90% at 85% 0%, #000, transparent 70%); mask: radial-gradient(130% 90% at 85% 0%, #000, transparent 70%); pointer-events: none; } .ds-plate-title { position: relative; font-family: var(--font-display), 'Libre Caslon Display', Georgia, serif; font-weight: 400; font-size: 2.4rem; line-height: 1.05; letter-spacing: -0.01em; margin: 0 0 16px; } .ds-plate-title span { color: #ff5a1f; font-style: italic; } .ds-plate-svg { position: relative; width: 100%; height: auto; display: block; } .ds-wire { fill: none; stroke: rgba(242,241,236,0.4); stroke-width: 1.6; } .ds-pulse { fill: none; stroke: #ff5a1f; stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 26 2000; animation: ds-wire-run 3.4s linear infinite; } @keyframes ds-wire-run { to { stroke-dashoffset: -2026; } } @media (prefers-reduced-motion: reduce) { .ds-pulse { animation: none; stroke-dasharray: none; opacity: 0.8; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Field Manual",
+    "overview": "A page printed, not a screen lit. Cool bright paper carries near-black ink and two risograph inks, cobalt and fluoro-orange, each with one job. Structure comes from hairline ink rules and paper-on-paper cards; texture comes from a 1-bit halftone dot field and a faint offset-print grain multiplied over the whole page. The display face is a letterpress Caslon set large and roman; one word per heading is inked in flame italic.\n\nLight is the single committed identity: there is no dark theme (`color-scheme: light`). The one dark surface is the machine plate, an ink-ground band where the automation schematic runs. Motion is a single ease signature, entrances clip upward out of their own line band, and the only looping motion is the flame pulse running the wires.\n\nDensity is editorial: generous section padding, a 1200px measure, a 16px grid gap, and prose capped near 42 to 62 characters.",
+    "keyCharacteristics": [
+      "Two inks, split by role: cobalt acts, flame emphasizes and pulses.",
+      "Letterpress serif display at weight 400, never bold.",
+      "Hairline rules (15% / 30% ink) instead of shadows at rest.",
+      "Halftone dot field as the recurring signature, masked into corners.",
+      "Low print radii (3px / 4px / 8px).",
+      "One ease, `cubic-bezier(0.16, 1, 0.3, 1)`, for every state change."
+    ],
+    "rules": [
+      { "name": "The Two-Ink Rule", "body": "Cobalt means \"act here\"; flame means \"look here\" or \"this is moving\". A cobalt surface is always clickable; flame never fills a button.", "section": "colors" },
+      { "name": "The Mixed-From-Ink Rule", "body": "Every secondary neutral and tint is a `color-mix` of ink, paper, cobalt or flame. Do not introduce a free-standing gray.", "section": "colors" },
+      { "name": "The Roman-Led Rule", "body": "Display type is roman at weight 400. Italic appears only on the single flame-marked word (and the wordmark), never as a whole-heading treatment.", "section": "typography" },
+      { "name": "The One Marked Word Rule", "body": "A display heading carries at most one marked word, flame and italic.", "section": "typography" },
+      { "name": "The Mono-Is-Data Rule", "body": "JetBrains Mono sets only real system data: pipeline steps, statuses, stacks, roles, contact strings. Labels and prose stay in the grotesk.", "section": "typography" },
+      { "name": "The Flat-At-Rest Rule", "body": "Nothing casts a shadow until it is scrolled under or hovered.", "section": "elevation" },
+      { "name": "The One Trick Rule", "body": "Offset misregistration is the world's single print trick; it lives on the wordmark and nowhere else.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** give every clickable primary surface cobalt and every emphasis or motion flame (The Two-Ink Rule).",
+      "**Do** set display type in Libre Caslon Display at 400, roman, with at most one flame italic word per heading.",
+      "**Do** structure with 1px ink hairlines at 15% and 30%, and keep surfaces flat until hovered or scrolled under.",
+      "**Do** time every state transition on `cubic-bezier(0.16, 1, 0.3, 1)`, with exits faster than entrances (130ms fast, 260ms medium); linear is reserved for constant-velocity loops like the machine pulse.",
+      "**Do** honor reduced motion by dropping movement while keeping color and opacity feedback.",
+      "**Do** draw icons as masked SVG strokes in `currentColor`."
+    ],
+    "donts": [
+      "**Don't** add a third accent hue or a free-standing gray; derive tints from ink, paper, cobalt or flame.",
+      "**Don't** add a dark theme; light paper is the identity, and the machine plate is the only ink ground.",
+      "**Don't** bold the display face or set whole headings in italic.",
+      "**Don't** put a tracked uppercase label above a heading as a kicker; labels name rows, groups and data, never introduce a title.",
+      "**Don't** use unicode glyphs as icons or arrows.",
+      "**Don't** use radii above 8px on surfaces, or soft app-style rounding.",
+      "**Don't** use offset shadows anywhere but the wordmark's misregistration ghost.",
+      "**Don't** set prose or labels in mono; mono is for real system data."
+    ]
+  }
+}

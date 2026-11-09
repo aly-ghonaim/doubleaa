@@ -8,7 +8,7 @@ import { tools } from "@/lib/content";
  * globals.css (.hero-line / .hero-follow).
  */
 
-// Headline lines, each rising out of its own clipped band ~90ms apart.
+// Headline lines, each rising out of its own clipped band ~92ms apart.
 const LINES: ReactNode[] = [
   "We build",
   "the website —",
@@ -23,6 +23,21 @@ const i = (n: number) => ({ "--i": n }) as CSSProperties;
 export function Hero() {
   return (
     <section className="hero wrap">
+      <div className="hero-teaser" aria-hidden="true">
+        <svg viewBox="0 0 240 150" className="hero-teaser-svg">
+          <g className="ht-wire">
+            <path d="M84 71 H118 C134 71 134 37 150 37" />
+            <path d="M84 71 H118 C134 71 134 109 150 109" />
+          </g>
+          <g className="ht-box">
+            <rect x="6" y="52" width="78" height="38" rx="4" />
+            <rect x="150" y="18" width="80" height="38" rx="4" />
+            <rect x="150" y="90" width="80" height="38" rx="4" />
+          </g>
+          <circle className="ht-dot" cx="150" cy="37" r="2.6" />
+          <circle className="ht-dot" cx="150" cy="109" r="2.6" />
+        </svg>
+      </div>
       <h1 className="hero-title font-display">
         {LINES.map((line, n) => (
           <span key={n} className="hero-line">
@@ -40,6 +55,7 @@ export function Hero() {
       <div className="hero-actions hero-follow" style={i(1)}>
         <a href="#contact" className="btn btn-primary">
           Start a project
+          <i className="i-arrow" aria-hidden="true" />
         </a>
         <a href="#work" className="btn btn-ghost">
           See the work

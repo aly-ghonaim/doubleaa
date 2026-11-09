@@ -7,28 +7,33 @@ related_targets: []
 
 ## Direction contract
 
-THESIS: doubleaa is a two-person studio that builds the website AND the machine behind it.
-This surface owns the idea of "the seam" — interface and automation as one craft. It refuses
-the category default: the warm-cream serif studio page, the eyebrow-over-heading, the row of
-equal icon cards, the gradient hero headline.
+THESIS: doubleaa builds the website AND the machine behind it — this surface owns "the seam,"
+interface and automation as one craft. It refuses the category default (warm-cream serif studio
+page, eyebrow-over-heading, equal icon cards), it refuses its own prior dark-grotesque look, and
+it refuses the generic editorial AI cluster (italic display serif + tracked mono labels on cream).
 
-OWN-WORLD: Warm near-black premium dark. Ground #0E0C0A, elevated warm charcoal surfaces,
-warm off-white ink, hairline warm lines, one committed amber accent (#E8853A). Display is a
-heavy grotesque with character (Bricolage Grotesque, 700–800) set large and tight; body is a
-clean grotesque (Hanken); mono only for pipeline/tool labels. Recognizable with content
-removed: black warmth + amber + oversized tight grotesque headings, no kickers, no cards-as-structure.
+OWN-WORLD: Field-manual / riso-print editorial. Cool bright paper ground (#F2F1EC), near-black
+ink (#141519), two risograph inks — cobalt (#2833C9) and fluoro-orange (#FF5A1F) — split by role:
+cobalt owns primary actions (nav CTA, hero primary, email), fluoro-orange owns emphasis,
+honest status, and the running pulse. Plus a 1-bit halftone / ordered-dither signature. Display is Libre Caslon
+Display (print-letterpress serif, not Didone, roman-led not italic-forward); body is Hanken
+Grotesque; mono (JetBrains) only for real pipeline/tool labels. Hairline ink rules, halftone dot
+textures, a touch of offset misregistration as the one trick. Recognizable with content removed:
+paper + cobalt/flame dither + Caslon display + hairline rules — no cards-as-structure, no kickers.
 
-STORY: A serious client lands, instantly reads "web + the automation behind it," sees two
-named real builders, honest real work with honest status labels, and an unmistakable "Start a
-project." They believe these two ship things that keep running, and they email.
+STORY: a serious client lands, instantly reads "web + the automation behind it," meets two named
+real builders, sees honest real work with honest status chips, watches the automation schematic
+literally run, believes these two ship things that keep running, and takes the one action: Start
+a project.
 
-FIRST VIEWPORT: Slim top bar (wordmark left, Work/Studio/Contact, boxed "Start a project"
-right). Below it a huge two-line grotesque headline ("We build the website — and the machine
-behind it."), a short lede, two actions (primary Start a project, ghost See the work), and a
-quiet honest "Built with" tech row (Next.js, React, Shopify, n8n, OpenAI) — never fake clients.
+FIRST VIEWPORT: boxed top bar (Caslon wordmark left, Work / Studio / Contact, cobalt "Start a
+project" right — cobalt owns primary actions). Below it a large Caslon headline — "We build the website — and the machine behind
+it." with one word inked flame — a short grotesque lede, two actions (primary Start a project,
+ghost See the work), a quiet honest "Built with" row (Next.js, React, Shopify, n8n, OpenAI), and a
+small halftone machine-teaser at the edge. Never fake clients or logos.
 
-FORM: Repurposed premium-agency structure (bluesqx as structural inspiration only, rebuilt in
-our own dark/amber world — no cloned look, copy, or branding). Position: user-pinned direction,
-so no concept roll. seed: none (unavailable).
+FORM: Repurposed premium-agency structure, rebuilt in our own riso-print world (andreas.vision and
+bluesqx are structural / energy inspiration only — no cloned look, copy, artwork, or palette).
+Position: user-pinned replacement direction, so no concept roll. seed: none (unavailable).
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
