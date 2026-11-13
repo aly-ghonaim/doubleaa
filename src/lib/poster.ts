@@ -8,13 +8,13 @@ export const POSTER_H = 792;
 
 // Canvas can't resolve color-mix(), so these mirror the computed tokens in globals.css
 // (claret night: INK = cream text, COBALT = coral accent, FLAME = peach glow).
-const INK = "#f7ebdd";
+const INK = "#fbf1e6";
 const CARD = "#1f0d13";
 const MUTED = "#c9b3a6";
 const FAINT = "#a8968c";
 const LINE = "rgba(247, 235, 221, 0.3)";
-const COBALT = "#e8664a";
-const COBALT_SOFT = "#3b1a1b";
+const COBALT = "#ff4d2e";
+const COBALT_SOFT = "#33100f";
 const FLAME = "#f2d4b0";
 const FLAME_SOFT = "#3d2929";
 
@@ -79,7 +79,7 @@ function halftone(ctx: CanvasRenderingContext2D): void {
     for (let y = POSTER_H - R; y < POSTER_H; y += 13) {
       const a = 1 - Math.hypot(POSTER_W - x, POSTER_H - y) / R;
       if (a <= 0) continue;
-      ctx.fillStyle = `rgba(232, 102, 74, ${(a * 0.32).toFixed(3)})`;
+      ctx.fillStyle = `rgba(255, 77, 46, ${(a * 0.32).toFixed(3)})`;
       ctx.beginPath();
       ctx.arc(x, y, 2.6, 0, Math.PI * 2);
       ctx.fill();
@@ -97,7 +97,7 @@ function statusChip(ctx: CanvasRenderingContext2D, p: Project, f: PosterFonts): 
   const x = POSTER_W - PAD - w;
   const [bg, fg, border] =
     p.statusKind === "ok"
-      ? [COBALT_SOFT, COBALT, "rgba(232, 102, 74, 0.5)"]
+      ? [COBALT_SOFT, COBALT, "rgba(255, 77, 46, 0.5)"]
       : p.statusKind === "pending"
         ? [FLAME_SOFT, FLAME, "rgba(242, 212, 176, 0.45)"]
         : [CARD, MUTED, LINE];
@@ -152,7 +152,7 @@ function flowChips(ctx: CanvasRenderingContext2D, flow: string[], f: PosterFonts
     ctx.fillStyle = COBALT_SOFT;
     ctx.fill();
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "rgba(232, 102, 74, 0.4)";
+    ctx.strokeStyle = "rgba(255, 77, 46, 0.4)";
     ctx.stroke();
     ctx.fillStyle = INK;
     ctx.fillText(node, x + 18, top + H / 2 + 1);

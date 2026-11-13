@@ -1,14 +1,14 @@
-import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { DotField } from "@/components/DotField";
+import { HexField } from "@/components/HexField";
 import { Reveal } from "@/components/Reveal";
 import { Hero } from "@/components/Hero";
 import { MaskReveal } from "@/components/MaskReveal";
 import { toWords } from "@/lib/words";
 import { WorkShowcase } from "@/components/WorkShowcase";
 import { AutomationWalkthrough } from "@/components/AutomationWalkthrough";
-import { CopyEmail } from "@/components/CopyEmail";
+import { ShinyButton } from "@/components/ui/shiny-button";
+import { ArrowRight } from "lucide-react";
 import { capabilities, studioQA, EMAIL, GITHUB } from "@/lib/content";
 
 const STUDIO_WORDS = toWords([
@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <SmoothScroll />
-      <DotField />
+      <HexField />
       <Nav />
       <main id="top">
         <Hero />
@@ -90,21 +90,12 @@ export default function Home() {
               </h2>
               <p className="contact-sub">
                 A site that needs building, or a repetitive job that should run
-                itself — send us the outcome you want and we&apos;ll scope it.
+                itself? Send us the outcome you want and we&apos;ll scope it.
               </p>
               <div className="contact-row">
-                <Link className="btn btn-primary" href="/start">
-                  Start a project
-                </Link>
-                <CopyEmail />
-                <a
-                  className="btn btn-ghost"
-                  href={GITHUB}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  github.com/aly-ghonaim
-                </a>
+                <ShinyButton href="/contact">
+                  Contact us <ArrowRight size={26} strokeWidth={1.75} aria-hidden="true" />
+                </ShinyButton>
               </div>
             </div>
           </Reveal>
@@ -118,11 +109,11 @@ export default function Home() {
               double<i>aa</i>
             </div>
             <p className="footer-note">
-              Web development &amp; AI automation — Aly Ghonaim &amp; Abdullah
+              Web development &amp; AI automation by Aly Ghonaim &amp; Abdullah
               Eissa.
             </p>
             <p className="footer-locale">
-              <b>Cairo</b> · GMT+2 — Aly. Abdullah: contact detail pending.
+              Aly in <b>Cairo</b> · GMT+2
             </p>
           </div>
           <div className="footer-contact">

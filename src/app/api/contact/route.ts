@@ -1,4 +1,5 @@
 import { validateContact, type ContactRequest } from "@/lib/contact";
+import { EMAIL } from "@/lib/content";
 
 /*
  * POST /api/contact — the "Start a project" form.
@@ -6,7 +7,8 @@ import { validateContact, type ContactRequest } from "@/lib/contact";
  * Sends the request to our inbox through Resend (https://resend.com).
  * Configure in Vercel → Project → Settings → Environment Variables:
  *   RESEND_API_KEY  the API key from resend.com/api-keys
- *   CONTACT_TO      the inbox that receives requests
+ *   CONTACT_TO      optional; the inbox(es) that receive requests, comma-separated.
+ *                   Defaults to the public studio EMAIL.
  *   CONTACT_FROM    optional; defaults to Resend's shared test sender, which
  *                   only delivers to the email that owns the Resend account.
  *                   Once a domain is verified in Resend, set e.g.
@@ -87,9 +89,9 @@ export async function POST(request: Request) {
   }
 
   const key = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO;
-  if (!key || !to) {
-    console.error("contact: RESEND_API_KEY or CONTACT_TO is not set");
+  const to = process.env.CONTACT_TO || EMAIL;
+  if (!key) {
+    console.error("contact: RESEND_API_KEY is not set");
     return Response.json(
       { ok: false, error: "The form isn't connected yet." },
       { status: 503 },

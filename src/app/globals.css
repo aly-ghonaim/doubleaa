@@ -7,25 +7,25 @@
    --paper = page ground, --ink = text, --cobalt = action accent (coral),
    --flame = emphasis glow (peach). */
 :root {
-  --paper: #14070b;     /* wine-black ground */
+  --paper: #12060a;     /* wine-black ground */
   --paper-2: #0f0508;   /* recessed ground */
   --card: #1f0d13;      /* raised surface */
-  --ink: #f7ebdd;       /* warm cream text */
+  --ink: #fbf1e6;       /* warm cream text */
   /* Secondary text mixed from the foreground, kept well above WCAG AA on the ground. */
   --muted: color-mix(in srgb, var(--ink) 68%, var(--paper));
   --faint: color-mix(in srgb, var(--ink) 62%, var(--paper));
   --line: color-mix(in srgb, var(--ink) 15%, transparent);
   --line-2: color-mix(in srgb, var(--ink) 30%, transparent);
 
-  --cobalt: #e8664a;    /* coral: actions (6:1 on the ground) */
-  --cobalt-ink: #14070b;
+  --cobalt: #ff4d2e;    /* electric coral: actions (6.3:1 on the ground) */
+  --cobalt-ink: #12060a;
   --cobalt-soft: color-mix(in srgb, var(--cobalt) 14%, var(--paper));
   --flame: #f2d4b0;     /* peach: emphasis, status, pulse */
-  --flame-ink: #14070b;
+  --flame-ink: #12060a;
   --flame-soft: color-mix(in srgb, var(--flame) 14%, var(--paper));
   /* the cool counterpoint: atmosphere and secondary marks only, never actions */
-  --teal: #5fb0b0;      /* 7.6:1 on the ground, safe for small text */
-  --teal-deep: #1f6f78; /* glows */
+  --teal: #2ee6c8;      /* luminous aqua, 11:1 on the ground */
+  --teal-deep: #12877f; /* glows */
   --plum: #2a1029;      /* lifted end of card gradients */
 
   /* honest status, kept inside the two-ink discipline */
@@ -75,8 +75,8 @@ body {
 
 /* Fixed ambient light: coral from the top-left, teal from the bottom-right, so the
    ground has warm and cool depth instead of one flat wine tone. z -1 keeps it behind content. */
-@property --warm { syntax: "<number>"; inherits: false; initial-value: 18; }
-@property --cool { syntax: "<number>"; inherits: false; initial-value: 26; }
+@property --warm { syntax: "<number>"; inherits: false; initial-value: 34; }
+@property --cool { syntax: "<number>"; inherits: false; initial-value: 44; }
 @property --warm-y { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
 @property --cool-y { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
 @property --cool-x { syntax: "<percentage>"; inherits: false; initial-value: 100%; }
@@ -87,16 +87,16 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(60vw 55vh at 8% var(--warm-y), color-mix(in srgb, var(--cobalt) calc(var(--warm) * 1%), transparent), transparent 70%),
-    radial-gradient(70vw 65vh at var(--cool-x) var(--cool-y), color-mix(in srgb, var(--teal-deep) calc(var(--cool) * 1%), transparent), transparent 70%),
-    radial-gradient(50vw 40vh at 85% 15%, color-mix(in srgb, var(--plum) 70%, transparent), transparent 70%);
+    radial-gradient(75vw 70vh at 8% var(--warm-y), color-mix(in srgb, var(--cobalt) calc(var(--warm) * 1%), transparent), transparent 70%),
+    radial-gradient(80vw 75vh at var(--cool-x) var(--cool-y), color-mix(in srgb, var(--teal-deep) calc(var(--cool) * 1%), transparent), transparent 70%),
+    radial-gradient(55vw 45vh at 85% 15%, color-mix(in srgb, #5a1f5c 55%, transparent), transparent 70%);
 }
 /* The light follows the story: warm coral over the websites, the teal takes over as
    the automation walkthrough passes, then both settle into a mix by the contact. */
 @keyframes story-light {
-  0% { --warm: 18; --warm-y: 0%; --cool: 26; --cool-x: 100%; --cool-y: 100%; }
-  30%, 70% { --warm: 5; --warm-y: 45%; --cool: 62; --cool-x: 12%; --cool-y: 70%; }
-  100% { --warm: 14; --warm-y: 25%; --cool: 32; --cool-x: 100%; --cool-y: 95%; }
+  0% { --warm: 34; --warm-y: 0%; --cool: 44; --cool-x: 100%; --cool-y: 100%; }
+  30%, 70% { --warm: 12; --warm-y: 45%; --cool: 72; --cool-x: 12%; --cool-y: 70%; }
+  100% { --warm: 30; --warm-y: 25%; --cool: 50; --cool-x: 100%; --cool-y: 95%; }
 }
 @supports (animation-timeline: view()) {
   body { timeline-scope: --automations; }
@@ -108,17 +108,14 @@ body::before {
   }
 }
 
-/* Halftone field: a faint fixed dot grid (the studio's print signature) that the
-   DotField canvas swells around the pointer. Tile size must match GAP in DotField.tsx. */
-.dot-field {
+/* Hex lattice background (HexField.tsx): fixed behind content, above the body glows. */
+.hex-field {
   position: fixed;
   inset: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-image: radial-gradient(color-mix(in srgb, var(--ink) 10%, transparent) 0.8px, transparent 1.3px);
-  background-size: 22px 22px;
 }
 
 /* Film grain over the dark ground (overlay: multiply would vanish on wine-black). */
@@ -250,7 +247,52 @@ html.lenis, html.lenis body { height: auto; }
 }
 .bar-cta:hover { filter: brightness(1.08); transition: transform 150ms var(--ease), filter var(--t-fast) var(--ease); }
 .bar-cta:active { filter: brightness(0.94); }
-@media (max-width: 720px) { .bar-nav { display: none; } }
+/* Phones: the links fold into a sheet under the bar, opened by .bar-menu. */
+.bar-menu { display: none; }
+@media (max-width: 720px) {
+  .bar-menu {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -8px;
+    color: var(--ink);
+    background: none;
+    border: 0;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .bar-cta { padding: 10px 14px; }
+  .bar-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 6px max(24px, env(safe-area-inset-left, 0px)) 14px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line-2);
+    box-shadow: 0 24px 40px -24px #000;
+    font-size: 1.15rem;
+    color: var(--ink);
+    /* closed: tucked up and hidden; transitions in when .is-open */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease), visibility 0s linear var(--t-med);
+  }
+  .bar.is-open .bar-nav {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity var(--t-med) var(--ease), transform var(--t-med) var(--ease);
+  }
+  .bar-nav a { display: flex; align-items: center; min-height: 52px; border-bottom: 1px solid var(--line); padding: 0; }
+  .bar-nav a:last-child { border-bottom: 0; }
+  .bar-nav a::after { display: none; }
+}
 
 /* ---------- Hero (silk shader, src/components/ui/silk-mesh-shader-hero.tsx) ---------- */
 /* Sized by width AND height: on wide-but-short screens a width-only size overflowed the
@@ -496,7 +538,9 @@ html.lenis, html.lenis body { height: auto; }
 .tile:hover::after { opacity: 0.24; }
 .tile > * { position: relative; z-index: 1; }
 .tile.featured { min-height: 290px; }
-.tile-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.tile-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px 12px; }
+/* chip stays one piece: it drops under the category instead of breaking or overflowing */
+.tile-head .status { font-size: 0.72rem; font-weight: 600; }
 .tile-cat {
   font-family: var(--font-sans), system-ui, sans-serif;
   font-weight: 600;
@@ -596,7 +640,7 @@ html.lenis, html.lenis body { height: auto; }
 .by { letter-spacing: 0.03em; color: var(--ink); border: 1px solid var(--line-2); border-radius: 999px; padding: 4px 11px; }
 .by b { color: var(--cobalt); font-weight: 600; }
 .stack { color: var(--faint); }
-.status { letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; border: 1px solid var(--line-2); color: var(--muted); }
+.status { white-space: nowrap; flex: none; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 3px; border: 1px solid var(--line-2); color: var(--muted); }
 .status-ok { color: var(--cobalt); border-color: color-mix(in srgb, var(--cobalt) 45%, transparent); background: var(--cobalt-soft); }
 .status-pending { color: var(--flame); border-color: color-mix(in srgb, var(--flame) 50%, transparent); background: var(--flame-soft); }
 
@@ -613,7 +657,23 @@ html.lenis, html.lenis body { height: auto; }
 }
 .slot b { display: block; font-family: var(--font-display), Georgia, serif; color: var(--ink); font-size: 1.25rem; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.005em; }
 @media (max-width: 860px) { .bento { grid-template-columns: repeat(2, 1fr); } .bento > * { grid-column: span 2 !important; } }
-@media (max-width: 540px) { .bento { grid-template-columns: 1fr; } .bento > * { grid-column: span 1 !important; } }
+/* Phones: each group becomes a swipeable row (the next card peeks in) instead of a
+   3,700px stack. Breaks out of .wrap's gutter so cards slide edge to edge. */
+@media (max-width: 720px) {
+  .bento {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    margin-inline: -24px;
+    padding: 4px 24px 8px;
+    scroll-padding-inline: 24px;
+    scrollbar-width: none;
+  }
+  .bento::-webkit-scrollbar { display: none; }
+  .bento > * { flex: 0 0 min(84%, 340px); scroll-snap-align: start; }
+}
 
 /* ---------- Work ribbon (desktop): posters sweep along a 3D rail, then land ---------- */
 .sr-only {
@@ -749,6 +809,133 @@ html.lenis, html.lenis body { height: auto; }
 .contact-title .mark { color: var(--flame); font-style: italic; }
 .contact-sub { color: var(--muted); max-width: 48ch; margin: 20px 0 0; font-size: 1.05rem; position: relative; }
 .contact-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 32px; position: relative; }
+
+/* ---------- Shiny buttons ----------
+   .shiny is the effect, usable on any button or link: a coral/peach/aqua rim that
+   circles the pill (animated conic gradient on a registered angle), a halftone dot
+   layer inside, and a shimmer sweep. .shiny-btn is the large contact CTA.
+   The hero's vendored primary button gets it through .hero-silk .smh-primary. */
+@property --shiny-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.shiny,
+.hero-silk .smh-primary {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  color: var(--ink);
+  background:
+    radial-gradient(color-mix(in srgb, var(--flame) 26%, transparent) 0.8px, transparent 1.2px) 0 0 / 6px 6px padding-box,
+    linear-gradient(160deg, color-mix(in srgb, var(--plum) 80%, var(--card)), var(--paper-2)) padding-box,
+    conic-gradient(from var(--shiny-angle), transparent 0%, var(--cobalt) 10%, var(--flame) 18%, transparent 30%, transparent 50%, var(--teal) 62%, transparent 76%) border-box,
+    linear-gradient(var(--line-2), var(--line-2)) border-box;
+  box-shadow: 0 18px 44px -24px color-mix(in srgb, var(--cobalt) 75%, transparent);
+}
+/* shimmer: z -1 inside the isolated button paints over its background, under the label */
+.shiny::after,
+.hero-silk .smh-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 38%, color-mix(in srgb, var(--ink) 24%, transparent) 50%, transparent 62%);
+  background-size: 260% 100%;
+  background-position: 120% 0;
+  pointer-events: none;
+}
+.hero-silk .smh-primary:hover { box-shadow: 0 22px 50px -22px var(--cobalt); }
+@keyframes shiny-spin { to { --shiny-angle: 360deg; } }
+@keyframes shiny-sweep { 0%, 55% { background-position: 120% 0; } 100% { background-position: -20% 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .shiny, .hero-silk .smh-primary { animation: shiny-spin 4.5s linear infinite; }
+  .shiny::after, .hero-silk .smh-primary::after { animation: shiny-sweep 3.8s var(--ease) infinite; }
+}
+
+.shiny-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(20px, 2.6vw, 28px) clamp(34px, 4.5vw, 54px);
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  box-shadow: 0 24px 60px -28px color-mix(in srgb, var(--cobalt) 80%, transparent);
+  transition: transform 420ms var(--ease), box-shadow 420ms var(--ease);
+}
+.shiny-btn svg { transition: transform 420ms var(--ease); }
+.shiny-btn:hover { transform: translateY(-3px); box-shadow: 0 30px 70px -26px var(--cobalt); }
+.shiny-btn:hover svg { transform: translateX(5px); }
+.shiny-btn:active { transform: translateY(0) scale(0.98); transition-duration: 90ms; }
+.shiny-btn:focus-visible { outline: 2px solid var(--cobalt); outline-offset: 5px; }
+
+/* Accent words: coral through peach to aqua. Fallback colour stays coral. */
+.sec-title .mark,
+.contact-title .mark,
+.hero-silk .smh-h em {
+  color: var(--cobalt);
+  background: linear-gradient(100deg, var(--cobalt) 10%, var(--flame) 55%, var(--teal) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 0.06em 0.08em 0; /* room so the italic tail and descenders aren't clipped */
+}
+/* on the coral silk, start from peach so the word never sinks into the background */
+.hero-silk .smh-h em { background-image: linear-gradient(100deg, var(--flame) 15%, var(--teal) 90%); }
+
+/* ---------- Contact page + form ---------- */
+.contact-page { min-height: calc(100svh - var(--bar-h)); }
+.contact-page .sec-title { font-size: clamp(2.4rem, 6vw, 4.4rem); max-width: 14ch; }
+.cf { display: grid; gap: 22px; max-width: 760px; }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.cf-field { display: grid; gap: 8px; }
+.cf-field > span, .cf-types legend { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em; color: var(--ink); }
+.cf input:not([type="radio"]), .cf textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--card) 85%, transparent);
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+}
+.cf textarea { resize: vertical; min-height: 150px; line-height: 1.55; }
+.cf input::placeholder, .cf textarea::placeholder { color: var(--faint); }
+.cf input:not([type="radio"]):focus-visible, .cf textarea:focus-visible {
+  outline: none;
+  border-color: var(--cobalt);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cobalt) 28%, transparent);
+}
+.cf-types { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.cf-types legend { margin-bottom: 10px; padding: 0; }
+.cf-pill input { position: absolute; opacity: 0; pointer-events: none; }
+.cf-pill span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+.cf-pill span:hover { color: var(--ink); border-color: var(--ink); }
+.cf-pill input:checked + span { color: var(--cobalt-ink); background: var(--cobalt); border-color: var(--cobalt); }
+.cf-pill input:focus-visible + span { outline: 2px solid var(--cobalt); outline-offset: 3px; }
+.cf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.cf-error { margin: 0; color: var(--flame); font-size: 0.95rem; }
+.cf-error a { color: var(--ink); }
+.cf-submit { justify-self: start; min-height: 52px; padding-inline: 28px; }
+.cf-submit:disabled { opacity: 0.6; cursor: progress; }
+.cf-done { max-width: 560px; }
+.cf-done h2 { font-weight: 400; font-size: clamp(2rem, 4vw, 2.8rem); margin: 0 0 10px; }
+.cf-done p { color: var(--muted); margin: 0 0 26px; }
+@media (max-width: 640px) { .cf-row { grid-template-columns: 1fr; } }
 
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--line-2); padding-block: 52px 72px; color: var(--muted); }

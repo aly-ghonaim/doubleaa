@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
 
 const SCROLL_THRESHOLD = 40;
 const MAGNET_PULL = 0.25;
@@ -14,7 +14,18 @@ function prefersReducedMotion(): boolean {
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const ctaRef = useRef<HTMLAnchorElement>(null);
+
+  // Escape closes the phone menu.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   // Condense the bar after a short scroll. Passive + rAF-throttled.
   useEffect(() => {
@@ -66,20 +77,38 @@ export function Nav() {
   }, []);
 
   return (
-    <header className={scrolled ? "bar is-scrolled" : "bar"}>
+    <header className={`bar${scrolled ? " is-scrolled" : ""}${open ? " is-open" : ""}`}>
       <div className="bar-inner">
-        <Link href="/#top" className="brand">
+        <Link href="/" className="brand">
           double<i>aa</i>
         </Link>
-        <nav className="bar-nav" aria-label="Primary">
+        <nav
+          id="primary-nav"
+          className="bar-nav"
+          aria-label="Primary"
+          onClick={(e) => {
+            if ((e.target as HTMLElement).closest("a")) setOpen(false);
+          }}
+        >
           <Link href="/#work">Work</Link>
           <Link href="/#studio">Studio</Link>
-          <Link href="/#contact">Contact</Link>
+          <Link href="/contact">Contact</Link>
         </nav>
         <div className="bar-tools">
-          <a href="/start" className="bar-cta" ref={ctaRef}>
+          <Link href="/contact" className="bar-cta shiny" ref={ctaRef}>
             Start a project
-          </a>
+          </Link>
+          {/* phones only: the links fold into a sheet under the bar */}
+          <button
+            type="button"
+            className="bar-menu"
+            aria-expanded={open}
+            aria-controls="primary-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((o) => !o)}
+          >
+            {open ? <X size={22} strokeWidth={1.75} /> : <Menu size={22} strokeWidth={1.75} />}
+          </button>
         </div>
       </div>
     </header>

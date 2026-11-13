@@ -36,7 +36,8 @@ export function validateContact(input: Partial<Record<keyof ContactRequest, unkn
 } {
   const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
   const data: ContactRequest = {
-    name: str(input.name),
+    // no line breaks: the name goes into the email subject
+    name: str(input.name).replace(/[\r\n]+/g, " "),
     email: str(input.email),
     phone: str(input.phone),
     company: str(input.company),

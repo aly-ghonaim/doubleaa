@@ -26,11 +26,11 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "doubleaa — web development & AI automation",
+  title: "doubleaa | web development & AI automation",
   description:
     "A two-person studio by Aly Ghonaim & Abdullah Eissa. We build responsive websites and the n8n/AI automations that run behind them.",
   openGraph: {
-    title: "doubleaa — web development & AI automation",
+    title: "doubleaa | web development & AI automation",
     description:
       "A two-person studio. We build the website and the machine that runs behind it.",
     type: "website",

@@ -22,7 +22,7 @@ export const web: Project[] = [
     category: "Landing page",
     role: "Gym brand landing page",
     blurb:
-      "A high-contrast, animated marketing site for a combat-training gym — scroll-driven motion, glass navigation, a bold editorial hero. Built and production-bundled.",
+      "A high-contrast, animated marketing site for a combat-training gym: scroll-driven motion, glass navigation, a bold editorial hero. Built and production-bundled.",
     author: "Aly",
     stack: ["React", "Vite", "GSAP", "Tailwind"],
     status: "Built",
@@ -46,7 +46,7 @@ export const web: Project[] = [
     category: "Shopify storefront",
     role: "Custom Shopify storefront · Arabic-first (RTL) + English",
     blurb:
-      "A custom Shopify Liquid theme for a Kuwaiti handcrafted-jewelry brand — bilingual with a full right-to-left layout, product pages with measurements and multiple angles, and the owner running her own catalogue. Security-audited before launch: visitor-input XSS found and fixed.",
+      "A custom Shopify Liquid theme for a Kuwaiti handcrafted-jewelry brand, bilingual with a full right-to-left layout, product pages with measurements and multiple angles, and the owner running her own catalogue. Security-audited before launch: visitor-input XSS found and fixed.",
     author: "Aly",
     stack: ["Shopify Liquid", "RTL / i18n", "security-audited"],
     status: "Live client",
@@ -61,7 +61,7 @@ export const automation: Project[] = [
     category: "n8n automation",
     role: "Form → AI triage → spreadsheet → email",
     blurb:
-      "Incoming form submissions are evaluated by an AI model, routed on validation rules, synced to a sheet, and answered by a tailored email — no human in the loop.",
+      "Incoming form submissions are evaluated by an AI model, routed on validation rules, synced to a sheet, and answered by a tailored email. No human in the loop.",
     author: "Abdullah",
     flow: ["Jotform", "OpenAI", "If", "Sheets", "Gmail"],
     stack: ["n8n"],
@@ -74,7 +74,7 @@ export const automation: Project[] = [
     category: "n8n automation",
     role: "Script → render → YouTube, on a trigger",
     blurb:
-      "A Telegram command or a cron schedule starts GPT-4 scriptwriting, renders Hook / Problem / Solution / CTA segments in parallel, and publishes to YouTube — with retry handling for API timeouts.",
+      "A Telegram command or a cron schedule starts GPT-4 scriptwriting, renders Hook / Problem / Solution / CTA segments in parallel, and publishes to YouTube, with retry handling for API timeouts.",
     author: "Abdullah",
     flow: ["Telegram / cron", "GPT-4", "Render", "YouTube API"],
     stack: ["n8n"],
@@ -99,7 +99,7 @@ export const automation: Project[] = [
     category: "AI app",
     role: "Photo of a schedule → structured data",
     blurb:
-      "A vision model reads a photographed university timetable and turns it into structured courses, days and slots, then tracks attendance against each session — AI integration inside a real Next.js app.",
+      "A vision model reads a photographed university timetable and turns it into structured courses, days and slots, then tracks attendance against each session. AI integration inside a real Next.js app.",
     author: "Aly",
     stack: ["Next.js", "Gemini vision"],
     status: "Working",
@@ -116,7 +116,7 @@ export interface Capability {
 export const capabilities: Capability[] = [
   {
     title: "Websites & storefronts",
-    body: "The part your customers see. Fast, responsive, and built to convert — from a one-page launch to a full custom storefront.",
+    body: "The part your customers see. Fast, responsive, and built to convert, from a one-page launch to a full custom storefront.",
     items: [
       "Marketing sites & landing pages",
       "Custom Shopify themes, Arabic-first (RTL) or English",
@@ -126,7 +126,7 @@ export const capabilities: Capability[] = [
   },
   {
     title: "AI & n8n automation",
-    body: "The machine behind it. The repetitive work that should run itself — triaged, routed, and answered without a human in the loop.",
+    body: "The machine behind it. The repetitive work that should run itself: triaged, routed, and answered without a human in the loop.",
     items: [
       "Form → AI triage → sheet → email pipelines",
       "Content generation & auto-publishing",
@@ -140,7 +140,7 @@ export const capabilities: Capability[] = [
 export const studioQA: { q: string; a: string }[] = [
   {
     q: "What we build",
-    a: "Marketing sites and storefronts on the front, n8n and AI pipelines behind them. The work we like best is where the two meet — a form that feeds a workflow, a store that runs its own admin.",
+    a: "Marketing sites and storefronts on the front, n8n and AI pipelines behind them. The work we like best is where the two meet: a form that feeds a workflow, a store that runs its own admin.",
   },
   {
     q: "How we work",
