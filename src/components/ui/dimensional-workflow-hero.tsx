@@ -720,8 +720,14 @@ export default function DimensionalWorkflowHero({ content, motion, accent, class
       // Safari can retain the pin's old element dimensions during rotation.
       // Browser viewport events provide a fallback while the existing rebuild
       // path preserves the playhead and recreates the same 3D poses.
+      // Phones: the address bar sliding in and out while scrolling changes only
+      // innerHeight, by well under 160px. The scene is sized in svh so it is
+      // unaffected; rebuilding then would jump the pinned walkthrough mid-swipe.
+      const touch = window.matchMedia("(pointer: coarse)").matches;
       const browserResize = () => {
-        if (Math.abs(window.innerWidth - fittedWindowWidth) > 1 || Math.abs(window.innerHeight - fittedWindowHeight) > 1) scheduleRebuild();
+        const dw = Math.abs(window.innerWidth - fittedWindowWidth);
+        const dh = Math.abs(window.innerHeight - fittedWindowHeight);
+        if (dw > 1 || dh > (touch ? 160 : 1)) scheduleRebuild();
       };
       window.addEventListener("resize", browserResize);
       window.addEventListener("orientationchange", scheduleRebuild);

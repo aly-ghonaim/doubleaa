@@ -90,8 +90,12 @@ export function HexField() {
     let dpr = 1;
     const resize = () => {
       dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      canvas.width = Math.round(window.innerWidth * dpr);
-      canvas.height = Math.round(window.innerHeight * dpr);
+      // CSS sizes the canvas (100lvh), so address-bar slides on phones leave it alone
+      const w = Math.round(canvas.clientWidth * dpr);
+      const h = Math.round(canvas.clientHeight * dpr);
+      if (w === canvas.width && h === canvas.height) return;
+      canvas.width = w;
+      canvas.height = h;
       gl.viewport(0, 0, canvas.width, canvas.height);
       draw(performance.now());
     };
