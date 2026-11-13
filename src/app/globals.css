@@ -485,6 +485,36 @@ html.lenis, html.lenis body { height: auto; }
     }
   }
 }
+/* Phones and tablets: the same parting, adapted to the stacked layout. Each card
+   tracks its own pass through the screen, swings in from its side, then peels
+   away to that side (first left, second right) as it scrolls out of view. */
+@keyframes cap-swing-l {
+  from { translate: -18vw 0; rotate: -6deg; scale: 0.94; }
+  30%, 62% { translate: 0 0; rotate: 0deg; scale: 1; }
+  to { translate: -75vw -4vh; rotate: -12deg; scale: 0.9; }
+}
+@keyframes cap-swing-r {
+  from { translate: 18vw 0; rotate: 6deg; scale: 0.94; }
+  30%, 62% { translate: 0 0; rotate: 0deg; scale: 1; }
+  to { translate: 75vw -4vh; rotate: 12deg; scale: 0.9; }
+}
+@media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .caps > :nth-child(1) { view-timeline: --cap-a block; }
+    .caps > :nth-child(2) { view-timeline: --cap-b block; }
+    .caps > :nth-child(1) .cap,
+    .caps > :nth-child(2) .cap {
+      animation: cap-float 7s ease-in-out infinite, cap-swing-l linear both;
+      animation-timeline: auto, --cap-a;
+      animation-range: normal, entry 0% exit 100%;
+    }
+    .caps > :nth-child(2) .cap {
+      animation-name: cap-float, cap-swing-r;
+      animation-timeline: auto, --cap-b;
+      animation-delay: -3.5s, 0s;
+    }
+  }
+}
 
 /* ---------- Work: bento of paper cards ---------- */
 .bento { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
